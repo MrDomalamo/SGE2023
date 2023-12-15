@@ -1,0 +1,15 @@
+	id 	
+	candidato	
+	recrutador		
+	finalidade		
+	bairro		
+	cidade		
+	direcoes		
+	pelouro	
+	data_cad		
+	data_inicio		
+	data_final	
+	estado		
+	foto	
+	descricao	
+	ativo

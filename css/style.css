@@ -1,0 +1,623 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+body{
+    
+    
+    justify-content: center;s
+    
+}
+
+header {
+    background-color:#096B63;
+   
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 6rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo h1 {
+    color: #fff;
+}
+
+
+
+.nav-item {
+    margin: 0 15px;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-size: 1.15rem;
+    color: #fff;
+    font-weight: 400;
+}
+
+.login-buttonn button {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #ffc107;
+}
+
+.login-buttonn button a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+.login-buttonnn button {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #ffc107;
+}
+
+.login-buttonnn button a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+
+
+
+ul{
+    list-style: none;
+}
+.footer{
+    background-color: #096B63;
+    padding: 42px 0;
+}
+.footer-col{
+    color: #fff;
+   width: 100%;
+   text-align: center;
+   padding: 0 0px;
+}
+
+.footer-col .social-links a{
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    background-color: rgba(255,255,255,0.2);
+    margin:0 0px 0px 0;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    color: #ffffff;
+    transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover{
+    color: #24262b;
+    background-color: #ffffff;
+}
+
+
+.foto-centro{
+    text-align: center;
+}
+
+.containerr{
+    
+    background-color: #fff;
+    position: relative;
+    width: 68%;
+    
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: 220px;
+    margin-top: 0%;
+    padding-bottom: 180px;
+
+
+}
+.cardd{
+    padding-top: 23px;
+    
+}
+.cardd img{
+    width:150px;
+     height:70px;
+}
+
+.imgBx{
+    text-align: center;
+}
+.cor{
+    
+    padding: 0px 20px 0px 20px ;
+}
+
+/*=======modal login=======*/
+.modal {
+background-image:  url('../img/bc03.jpg');
+ background-repeat: no-repeat; 
+ background-size: 1600px; 
+}
+
+.modal-content{
+  margin-top:90px;
+}
+
+.modal-header{
+background-color:#066961a6;  
+}
+
+.foto img{
+  width: 180px;
+  margin-left: 143px;
+}
+
+.form-outline{
+ width: 450px; 
+ margin-top: 10px; 
+}
+
+.form-outline b{
+ margin-left: 145px; 
+}
+
+.form-outline input{
+  margin-top:20px;
+  margin-left: 25px;
+}
+
+.container-login100-form-btn{
+margin-top:-20px;  
+}
+.pt-1{
+ width: 300px;
+
+
+}
+.pt-1 a{
+ color: rgb(0, 0, 0);
+  
+}
+.pt-1 span{
+    color: rgb(0, 0, 0);
+    
+}
+.pt-1 button{
+ background-color:#066961a6; 
+ margin-left: 93px;
+ 
+}
+
+.recuperar{
+
+ margin-top: 10px;
+ margin-bottom: 10px; 
+}
+
+.recuperar b{
+    margin-left: 160px;
+  color: rgb(0, 0, 0);
+
+}
+
+.pt-1-1{
+width: 200px; 
+margin-top: 10px;  
+}
+
+.pt-1-1 button{
+background-color:#066961a6; 
+margin-left: 148px; 
+font-size:17px;  
+}
+
+.pt-1-1 button a{
+  color: #ffc107;
+}
+
+.pt-1-1 button a span{
+  color: rgb(0, 0, 0);
+}
+
+/*=======modal cadastro login=======
+
+#modalCadastro{
+/*background-image:  url('../img/back4.2.jpg'); 
+background-repeat: no-repeat; 
+background-size: 1400px;   
+}*/
+
+#modalCadastro .modal-content{
+  margin-top:120px;
+}
+
+#modalCadastro .modal-header{
+ background-color: #066961a6; 
+ color: rgb(255, 255, 255); 
+} 
+
+#modalCadastro .modal-footer button{
+ background-color: #066961a6; 
+ border-color: #ffc107; 
+}
+
+#modalCadastro .text-center{
+  margin-bottom: 10px;
+}
+
+#modalCadastro .text-center b{
+  color: black;
+}
+
+/*=======modal Recuperar=======*/
+#modalRecuperar .modal-header{
+background-color: #066961a6; 
+color: rgb(0, 0, 0);
+}
+
+#modalRecuperar .modal-footer button{
+  background-color:#066961a6; 
+  border-color: #ffc107;
+}
+
+@media screen and (max-width: 820px){
+
+ .containerr{
+    
+    
+    margin-left: 140px;
+    
+    padding-bottom: 163px;
+
+
+}
+.cardd{
+    padding-top: 98px;
+    
+}
+.login-buttonn button a {
+    
+    font-size: 1.2rem;
+}
+.login-buttonnn button a {
+    
+    font-size: 1.2rem;
+}
+
+.logo img{
+    width: 280px;
+    height: 60px;
+} 
+
+.cor{
+    font-size: 1.4em;
+}  
+
+.modal {
+ background-image:  url('../img/bc01.jpg'); 
+ background-repeat: no-repeat; 
+ background-size: 1200px;
+ 
+}
+
+.modal-content{
+  
+  margin-top:300px;
+}
+    .foto img{
+  width: 200px;
+  margin-left: 140px;
+}
+
+.form-outline{
+ width: 420px; 
+ margin-top: 10px; 
+}
+
+.form-outline input{
+  margin-top:20px;
+  margin-left: 40px;
+}
+
+.form-outline b{
+ margin-left: 140px; 
+}
+.pt-1 button{
+ background-color:#096b63; 
+ margin-left: 110px;
+ 
+}
+.recuperar b{
+    margin-left: 130px;
+  color: black;
+
+}
+
+
+}
+@media screen and (max-width: 768px) {
+    
+    .nav-bar {
+        padding: 1.5rem 4rem;
+    }
+    .nav-item {
+        display: none;
+    }
+    .logo {
+    display: flex;
+    align-items: center;
+    
+}
+
+.cor{
+    font-size: 1.1em;
+} 
+.logo img{
+    width: 260px;
+    height: 50px;
+} 
+    
+   .login-buttonn{
+    display: none;
+   }
+    .footer-col{
+    width: 50%;
+    margin-bottom: 50px;
+}
+
+
+.containerr{
+    margin-left: 20px;
+    width: 90%;
+}
+.footer-col{
+   margin-bottom: -26px;
+}
+.footer-col span{
+    
+    font-size: 0.9em;
+   
+
+}
+
+/*=======modal login=======*/
+.modal {
+ background-image:  url('../img/back01.jpg'); 
+ background-repeat: no-repeat; 
+ background-size: 800px;
+ 
+}
+
+.modal-content{
+  margin-top:150px;
+} 
+
+.modal-header{
+background-color:#096b63;  
+}
+
+.foto img{
+  width: 180px;
+  margin-left: 80px;
+}
+
+.form-outline{
+ width: 350px; 
+ margin-top: 10px; 
+}
+
+.form-outline b{
+ margin-left: 80px; 
+}
+
+.form-outline input{
+  margin-top:20px;
+  margin-left: 10px;
+}
+
+.container-login100-form-btn{
+margin-top:-20px;  
+}
+.pt-1{
+ width: 150px;
+
+
+}
+.pt-1 a{
+ color: black;
+  
+}
+.pt-1 span{
+    color: black;
+    
+}
+.pt-1 button{
+ background-color:#096b63; 
+ margin-left: 110px;
+ 
+}
+
+.recuperar{
+
+ margin-top: 10px;
+ margin-bottom: 10px; 
+}
+
+.recuperar b{
+    margin-left: 110px;
+  color: black;
+
+}
+
+.pt-1-1{
+width: 200px; 
+margin-top: 10px;  
+}
+
+.pt-1-1 button{
+background-color:#096b63; 
+margin-left: 148px; 
+font-size:17px;  
+}
+
+.pt-1-1 button a{
+  color: #096b63;
+}
+
+.pt-1-1 button a span{
+  color: black;
+}
+
+/*=======modal cadastro login=======*/
+
+#modalCadastro{
+background-image:  url('../img/back01.jpg'); 
+background-repeat: no-repeat; 
+background-size: 1400px;   
+}
+
+#modalCadastro .modal-content{
+  margin-top:120px;
+}
+
+#modalCadastro .modal-header{
+ background-color: #096b63; 
+ color: white; 
+} 
+
+#modalCadastro .modal-footer button{
+ background-color: #096b63; 
+ border-color: #ffc107; 
+}
+
+#modalCadastro .text-center{
+  margin-bottom: 10px;
+}
+
+#modalCadastro .text-center b{
+  color: black;
+}
+
+/*=======modal Recuperar=======*/
+#modalRecuperar .modal-header{
+background-color: #096b63; 
+color: white;
+}
+
+#modalRecuperar .modal-footer button{
+  background-color: #096b63; 
+  border-color: #ffc107;
+}
+
+
+
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+}
+
+}
+
+@media screen and (max-width: 360px){
+.foto img{
+  width: 180px;
+  margin-left: 62px;
+}
+
+.form-outline{
+ width: 320px; 
+ margin-top: 10px; 
+}
+
+.form-outline b{
+ margin-left: 60px; 
+}
+.pt-1 button{
+ background-color:#096b63; 
+ margin-left: 100px;
+ 
+}
+.recuperar b{
+    margin-left: 100px;
+  color: black;
+
+}
+
+}
+
+@media screen and (min-width: 414px){
+    .foto img{
+  width: 180px;
+  margin-left: 92px;
+}
+
+.form-outline{
+ width: 320px; 
+ margin-top: 10px; 
+}
+
+.form-outline input{
+  margin-top:20px;
+  margin-left: 37px;
+}
+
+.form-outline b{
+ margin-left: 90px; 
+}
+.pt-1 button{
+ background-color:#096b63; 
+ margin-left: 130px;
+ 
+}
+.recuperar b{
+    margin-left: 130px;
+  color: black;
+
+}
+
+
+}
+@media screen and (min-width: 412px){
+    .foto img{
+  width: 180px;
+  margin-left: 92px;
+}
+
+.form-outline{
+ width: 320px; 
+ margin-top: 10px; 
+}
+
+.form-outline input{
+  margin-top:20px;
+  margin-left: 37px;
+}
+
+.form-outline b{
+ margin-left: 90px; 
+}
+.pt-1 button{
+ background-color:#096b63; 
+ margin-left: 130px;
+ 
+}
+.recuperar b{
+    margin-left: 130px;
+  color: black;
+
+}
+
+
+}
+
+
