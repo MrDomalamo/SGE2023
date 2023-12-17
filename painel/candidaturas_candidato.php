@@ -2,7 +2,15 @@
 require_once("verificar.php");
 require_once("../conexao.php");
 $pag = 'candidaturas_candidato'; 
-
+@session_start();
+$id_usuario = $_SESSION['id_usuario'];
+$nivel_usuario = $_SESSION['nivel_usuario'];
+$query = $pdo->query("SELECT * FROM usuarios WHERE id = '$id_usuario'");
+$res = $query->fetchAll(PDO::FETCH_ASSOC);
+$total_reg = @count($res);
+if($total_reg > 0){
+	$nivel_usu = $res[0]['nivel'];
+}
 
 //verificar se ele tem a permissão de estar nessa página
 if(@$candidaturas_candidato == 'ocultar'){
@@ -11,8 +19,17 @@ if(@$candidaturas_candidato == 'ocultar'){
 }
 
  ?>
+ <?php
+ if($nivel_usu != 'Administrador'){
+	echo <<<HTML
+	<button onclick="inserir()" type="button" class="btn btn-primary btn-flat btn-pri"><i class="fa fa-plus" aria-hidden="true"></i> Pedir estagio</button>
+HTML;
+	
+ }
+ 
+ ?>
 
- <button onclick="inserir()" type="button" class="btn btn-primary btn-flat btn-pri"><i class="fa fa-plus" aria-hidden="true"></i> Pedir estagio</button>
+ 
 
 <div class="bs-example widget-shadow" style="padding:15px" id="listar">
 	
@@ -35,29 +52,6 @@ if(@$candidaturas_candidato == 'ocultar'){
 				<div class="modal-body">
 
 						<div class="row">
-								<!-- <div class="col-md-6">						 -->
-									<!-- <div class="form-group"> 
-										<label>Candidato*</label> 
-										<select class="form-control sel2" name="candidato" id="candidato" required style="width:100%;"> 
-											<?php 
-											if($nivel_usu == 'Candidato'){
-												$query = $pdo->query("SELECT * FROM usuarios where id = '$id_usuario' order by id asc");
-											}else{
-												$query = $pdo->query("SELECT * FROM usuarios where nivel = 'Candidato' or nivel = 'Administrador' order by id asc");
-											}
-
-											$res = $query->fetchAll(PDO::FETCH_ASSOC);
-											for($i=0; $i < @count($res); $i++){
-												foreach ($res[$i] as $key => $value){}
-
-													?>	
-												<option value="<?php echo $res[$i]['id'] ?>"><?php echo $res[$i]['nome'] ?></option>
-
-											<?php } ?>
-
-										</select>
-									</div>					
-								</div> -->
 
 								<div class="col-md-4">	
 								<div class="form-group"> 
@@ -72,7 +66,7 @@ if(@$candidaturas_candidato == 'ocultar'){
 							<div class="col-md-4">						
 										<div class="form-group"> 
 											<label>Departamento pretendido*</label> 
-											<select class="form-control sel2" name="direcao" id="direcao" required style="width:100%;"> 
+											<select class="form-control sel2" name="direcoes" id="direcoes" required style="width:100%;"> 
 												<?php 
 												$query = $pdo->query("SELECT * FROM direcoes order by nome asc");
 												$res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -94,7 +88,7 @@ if(@$candidaturas_candidato == 'ocultar'){
 									<div class="col-md-4">						
 										<div class="form-group"> 
 											<label>Área*</label> 
-											<select class="form-control sel2" name="direcao" id="direcao" required style="width:100%;">
+											<select class="form-control sel2" name="pelouro" id="pelouro" required style="width:100%;">
 											<?php 
 												$query = $pdo->query("SELECT * FROM pelouros order by nome asc");
 												$res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -196,26 +190,9 @@ if(@$candidaturas_candidato == 'ocultar'){
 							<span><b>Curso: </b></span>
 							<span id="curso_mostrar"></span>
 						</div>
-						<div class="col-md-6">							
-							<span><b>Instituição: </b></span>
-							<span id="instituicoes_mostrar"></span>							
-						</div>
-						
+											
 					</div>
-
-
-					<div class="row" style="border-bottom: 1px solid #cac7c7;">
-						<div class="col-md-6">							
-							<span><b>Cidade: </b></span>
-							<span id="cidade_mostrar"></span>							
-						</div>
-						<div class="col-md-6">							
-							<span><b>Província: </b></span>
-							<span id="bairro_mostrar"></span>
-						</div>
-						
-					</div>		
-
+				
 
 
 					<div class="row" style="border-bottom: 1px solid #cac7c7;">

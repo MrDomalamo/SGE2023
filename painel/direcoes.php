@@ -11,7 +11,7 @@ if(@$direcoes == 'ocultar'){
 
  ?>
 
- <button onclick="inserir()" type="button" class="btn btn-primary btn-flat btn-pri"><i class="fa fa-plus" aria-hidden="true"></i> Nova Direcao</button>
+ <button onclick="inserir()" type="button" class="btn btn-primary btn-flat btn-pri"><i class="fa fa-plus" aria-hidden="true"></i> Nova Direcção</button>
 
 <div class="bs-example widget-shadow" style="padding:15px" id="listar">
 	
@@ -43,7 +43,7 @@ if(@$direcoes == 'ocultar'){
 
 							<div class="col-md-5">			
 							<div class="form-group"> 
-								<label>Pelouro</label> 
+								<label>Área de indicação</label> 
 								<select class="form-control sel2" name="pelouro" id="pelouro" required style="width:100%;"> 
 									<?php 
 									$query = $pdo->query("SELECT * FROM pelouros order by id asc");

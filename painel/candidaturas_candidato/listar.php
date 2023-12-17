@@ -39,8 +39,7 @@ if($total_reg > 0){
 	<th class="esc">Gênero</th>
 	<th class="esc">Idade</th>
 	<th class="esc">Telefone</th>
-	<th class="esc">Curso</th>
-	<th class="esc">Instituição</th> 	  
+	<th class="esc">Curso</th>	  
 	<th class="esc">Estado</th>
 	<th>Ações</th>
 	</tr> 
@@ -213,8 +212,7 @@ if($ext == 'pdf'){
 		<td class="esc">{$genero_candidato}</td>
 		<td class="esc">{$idade_candidato}</td>
 		<td class="esc">{$telefone_candidato}</td>
-		<td class="esc">{$nome_curso}</td> 
-		<td class="esc">{$nome_instituicoes}</td>                                       
+		<td class="esc">{$nome_curso}</td>                                        
 		<td class="esc">{$estado}</td>
 		<td>
 

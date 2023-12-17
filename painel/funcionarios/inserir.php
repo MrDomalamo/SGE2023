@@ -7,12 +7,12 @@ $telefone = $_POST['telefone'];
 $cpf = $_POST['cpf'];
 $email = $_POST['email'];
 $data_adm = $_POST['data_adm'];
-$cargo = $_POST['cargo'];
+$direcao = $_POST['direcao'];
 $endereco = $_POST['endereco'];
 $creci = $_POST['creci'];
 $id = $_POST['id'];
-$cidade = $_POST['cidade']; 
-$bairro = $_POST['bairro'];
+//$cidade = $_POST['cidade']; 
+//$bairro = $_POST['bairro'];
 $genero = $_POST['genero'];
 
 
@@ -84,19 +84,16 @@ if(@$_FILES['foto']['name'] != ""){
 
 
 //recuperar o nome do cargo
-$query2 = $pdo->query("SELECT * FROM cargos where id = '$cargo'");
+$query2 = $pdo->query("SELECT * FROM cargos where id = 5");
 $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 	if(@count($res2) > 0){
 		$nome_cargo = $res2[0]['nome'];
 	}
 
-
-
-
-
+$codigo = 5;
 
 if($id == ""){
-	$query = $pdo->prepare("INSERT INTO $tabela SET nome = :nome, telefone = :telefone, cpf = :cpf, email = :email, data_admissao = '$data_adm', cargo = '$cargo', cidade = '$cidade', bairro = '$bairro' ,genero = '$genero' , endereco = :endereco, creci = :creci, foto = '$foto', ativo = 'Sim' ");
+	$query = $pdo->prepare("INSERT INTO $tabela SET nome = :nome, telefone = :telefone, cpf = :cpf, email = :email, data_admissao = '$data_adm', direcao = '$direcao', cargo = '$codigo', genero = '$genero' , endereco = :endereco, creci = :creci, foto = '$foto', ativo = 'Sim' ");
 
 $query->bindValue(":nome", "$nome");
 $query->bindValue(":telefone", "$telefone");
@@ -145,7 +142,7 @@ $ult_id = $pdo->lastInsertId();
 	}
 	
 }else{
-	$query = $pdo->prepare("UPDATE $tabela SET nome = :nome, telefone = :telefone, cpf = :cpf, email = :email, data_admissao = '$data_adm', cargo = '$cargo', cidade = '$cidade', bairro = '$bairro' ,genero = '$genero' , endereco = :endereco, creci = :creci, foto = '$foto', ativo = 'Sim' WHERE id = '$id'");
+	$query = $pdo->prepare("UPDATE $tabela SET nome = :nome, telefone = :telefone, cpf = :cpf, email = :email, data_admissao = '$data_adm', cargo = '$codigo', direcao = '$direcao', genero = '$genero' , endereco = :endereco, creci = :creci, foto = '$foto', ativo = 'Sim' WHERE id = '$id'");
 
 $query->bindValue(":nome", "$nome");
 $query->bindValue(":telefone", "$telefone");

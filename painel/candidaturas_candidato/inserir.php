@@ -8,8 +8,8 @@ $nivel_usuario = $_SESSION['nivel_usuario'];
 $candidato = $id_usuario;
 
 $finalidade = $_POST['finalidade'];
-$cidade = $_POST['cidade'];
-$bairro = $_POST['bairro'];
+$pelouro = $_POST['pelouro'];
+$direcoes = $_POST['direcoes'];
 
 $descricao = $_POST['descricao'];
 $id = $_POST['id'];
@@ -44,10 +44,10 @@ if(@count($res) > 0){
 }
  
 	if($id == ""){
-		$query = $pdo->prepare("INSERT INTO $tabela SET candidato = '$candidato', recrutador = '0', finalidade = '$finalidade', bairro = '$bairro', cidade = '$cidade', direcoes = '0', pelouro = '0',data_cad = curDate(), estado = 'Pendente' ,arquivo = 'sem-foto.png', descricao =:descricao ,ativo = 'Sim', genero = '$genero', idade = '$idade' ");
+		$query = $pdo->prepare("INSERT INTO $tabela SET candidato = '$candidato', recrutador = '0', finalidade = '$finalidade', direcoes = '$direcoes', pelouro = '$pelouro', data_cad = curDate(), estado = 'Pendente' ,arquivo = 'sem-foto.png', descricao =:descricao ,ativo = 'Sim', genero = '$genero', idade = '$idade' ");
 		
 	}else{
-		$query = $pdo->prepare("UPDATE $tabela SET candidato = '$candidato', finalidade = '$finalidade', bairro = '$bairro', cidade = '$cidade', descricao = :descricao, genero = '$genero', idade = '$idade'  WHERE id = '$id'");
+		$query = $pdo->prepare("UPDATE $tabela SET candidato = '$candidato', finalidade = '$finalidade', direcoes = '$direcoes', pelouro = '$pelouro', descricao = :descricao, genero = '$genero', idade = '$idade'  WHERE id = '$id'");
 	}
 
 	$query->bindValue(":descricao", "$descricao");
@@ -62,7 +62,6 @@ $res = $query->fetchAll(PDO::FETCH_ASSOC);
 if(@count($res) > 0){
 	$nome_candidato = $res[0]['nome'];
 	$email_candidato = $res[0]['email'];
-	$bairro_recrutador = $res[0]['bairro'];
 	
 }
 
@@ -76,7 +75,7 @@ if(@count($res) > 0){
 
 
 
-$query = $pdo->query("SELECT * FROM funcionarios where bairro = '$bairro_recrutador' and cargo = '$id_cargo_recrutador' ");
+$query = $pdo->query("SELECT * FROM funcionarios where direcao = '$direcoes' and cargo = '$id_cargo_recrutador' ");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 if(@count($res) > 0){
 	$nome_funcionario = $res[0]['nome'];

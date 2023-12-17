@@ -6,7 +6,7 @@ $nome = $_POST['nome'];
 $telefone = $_POST['telefone'];
 $cpf = $_POST['cpf'];
 $email = $_POST['email']; 
-$data_nasc = $_POST['data_nasc'];
+//$data_nasc = $_POST['data_nasc'];
 $idade = $_POST['idade'];
 $endereco = $_POST['endereco'];
 $nivel_academico = $_POST['nivel_academico'];
@@ -19,6 +19,10 @@ $estado_civil = $_POST['estado_civil'];
 $nacionalidade = $_POST['nacionalidade'];
 $curso= $_POST['curso'];
 
+if($idade <18){
+ echo 'Não é permitido menor de idade';
+	exit();
+}
 //validar cpf
 $query = $pdo->query("SELECT * FROM $tabela where cpf = '$cpf'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -87,7 +91,7 @@ $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-		$query = $pdo->prepare("UPDATE $tabela SET nome = :nome, telefone = :telefone, cpf = :cpf, email = :email,nacionalidade =:nacionalidade , data_nasc = '$data_nasc' , idade =:idade, nivel_academico = '$nivel_academico', cargo = '$id_cargo',instituicoes = '$instituicoes', curso = '$curso' ,cidade = '$cidade', bairro = '$bairro' ,genero = '$genero' , endereco = :endereco, estado_civil = '$estado_civil' ,foto = '$foto', ativo = 'Sim' WHERE id = '$id'");
+		$query = $pdo->prepare("UPDATE $tabela SET nome = :nome, telefone = :telefone, cpf = :cpf, email = :email,nacionalidade =:nacionalidade, idade =:idade, nivel_academico = '$nivel_academico', cargo = '$id_cargo',instituicoes = '$instituicoes', curso = '$curso' ,cidade = '$cidade', bairro = '$bairro' ,genero = '$genero' , endereco = :endereco, estado_civil = '$estado_civil' ,foto = '$foto', ativo = 'Sim' WHERE id = '$id'");
 	
 	$query->bindValue(":nome", "$nome");
 	$query->bindValue(":telefone", "$telefone");

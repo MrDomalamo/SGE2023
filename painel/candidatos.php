@@ -69,25 +69,14 @@ if(@$candidatos == 'ocultar'){
 							</div>						
 						</div>
 
-						
-
-						
-
-						<div class="col-md-3">						
-							<div class="form-group"> 
-								<label>Data de Nascimento</label> 
-								<input type="date" class="form-control" name="data_nasc" id="data_nasc" value="<?php echo date('Y-m-d') ?>"> 
-							</div>						
-						</div>
-
-						<div class="col-md-2">						
+						<div class="col-md-4">						
 							<div class="form-group"> 
 								<label>Idade</label> 
-								<input type="text" class="form-control" name="idade" id="idade" required> 
+								<input type="number" class="form-control" name="idade" id="idade" required> 
 							</div>						
 						</div>
 
-						<div class="col-md-3">						
+						<div class="col-md-4">						
 							<div class="form-group"> 
 								<label>Perfil</label> 
 								<select class="form-control sel2" name="cargo" id="cargo" required style="width:100%;"> 
@@ -126,9 +115,7 @@ if(@$candidatos == 'ocultar'){
 							<div class="form-group"> 
 								<label>Estado civil</label> 
 								<select class="form-control" name="estado_civil" id="estado_civil"> 
-									<option value="Casado">Casado (a)</option>
-									<option value="Divorciado">Divorciado (a)</option>
-									<option value="Viuvo">Viuvo (a)</option>
+									<option value="Casado">Casado(a)</option>
 									<option value="Solteiro">Solteiro (a)</option>
 								</select>
 							</div>
@@ -143,6 +130,7 @@ if(@$candidatos == 'ocultar'){
 								<select class="form-control" name="genero" id="genero"> 
 									<option value="Masculino">Masculino</option>
 									<option value="Feminino">Feminino</option>
+									<option value="Outro">Outro</option>
 								</select>
 							</div>
 							</div>

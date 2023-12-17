@@ -47,8 +47,7 @@ if($total_reg > 0){
 	<th>Nome</th>
 	<th class="esc">Telefone</th> 
 	<th class="esc">Código</th> 
-	<th class="esc">Email</th>
-	<th class="esc">Cargo</th>	 
+	<th class="esc">Email</th> 
 	<th>Ações</th>
 	</tr> 
 	</thead> 
@@ -66,6 +65,7 @@ HTML;
 		$data_admissao = $res[$i]['data_admissao'];
 		$creci = $res[$i]['creci']; 
 		$foto = $res[$i]['foto'];
+		$direcao = $res[$i]['direcao'];
 		$ativo = $res[$i]['ativo'];
 		$genero = $res[$i]['genero'];
 		$cidade = $res[$i]['cidade'];
@@ -98,6 +98,13 @@ HTML;
 			$nome_cargo = 'Sem Cargo';
 		}
 
+		$query2 = $pdo->query("SELECT * FROM direcoes where id = '$direcao'");
+		$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+		if(@count($res2) > 0){
+			$nome_direcao = $res2[0]['nome'];
+		}else{
+			$nome_direcao = 'Sem Registro';
+		}
 
 		$query2 = $pdo->query("SELECT * FROM cidades where id = '$cidade'");
 		$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
@@ -124,12 +131,11 @@ HTML;
 		<td class="esc">{$telefone}</td>
 		<td class="esc">{$cpf}</td>
 		<td class="esc">{$email}</td>
-		<td class="esc">{$nome_cargo}</td>
 		<td>
 
-		<big><a href="#" onclick="editar('{$id}', '{$nome}', '{$telefone}', '{$cpf}', '{$email}', '{$endereco}', '{$cargo}', '{$data_admissao}', '{$creci}', '{$foto}', '{$genero}', '{$cidade}', '{$bairro}')" title="Editar Dados"><i class="fa fa-edit text-primary"></i></a></big>
+		<big><a href="#" onclick="editar('{$id}', '{$nome}', '{$telefone}', '{$cpf}', '{$email}', '{$endereco}', '{$cargo}', '{$data_admissao}', '{$creci}', '{$foto}', '{$genero}', '{$cidade}', '{$bairro}', '{$direcao}')" title="Editar Dados"><i class="fa fa-edit text-primary"></i></a></big>
 
-		<big><a href="#" onclick="mostrar('{$nome}', '{$telefone}', '{$cpf}', '{$email}', '{$endereco}', '{$nome_cargo}', '{$data_admissaoF}', '{$creci}', '{$foto}', '{$genero}', '{$nome_cidade}', '{$nome_bairro}')" title="Ver Dados"><i class="fa fa-info-circle text-secondary"></i></a></big>
+		<big><a href="#" onclick="mostrar('{$nome}', '{$telefone}', '{$cpf}', '{$email}', '{$endereco}', '{$nome_cargo}', '{$data_admissaoF}', '{$creci}', '{$foto}', '{$genero}', '{$nome_cidade}', '{$nome_bairro}', '{$nome_direcao}')" title="Ver Dados"><i class="fa fa-info-circle text-secondary"></i></a></big>
 
 		<li class="dropdown head-dpdn2" style="display: inline-block;">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><big><i class="fa fa-trash-o text-danger"></i></big></a>
@@ -179,7 +185,7 @@ HTML;
 
 
 
-	function editar(id, nome, telefone, cpf, email, endereco, cargo, data_admissao, creci, foto, genero, cidade, bairro){
+	function editar(id, nome, telefone, cpf, email, endereco, cargo, data_admissao, creci, foto, genero, cidade, bairro, $direcao){
 
 
 		$('#id').val(id);
@@ -199,7 +205,7 @@ HTML;
 
 		
 		$('#bairro').val(bairro);
-		
+		$('#direcao').val(direcao).change();
 
 		$('#tituloModal').text('Editar Registro');
 		$('#modalForm').modal('show');
@@ -208,7 +214,7 @@ HTML;
 
 
 
-	function mostrar(nome, telefone, cpf, email, endereco, cargo, data_admissao, creci, foto, genero, cidade, bairro){
+	function mostrar(nome, telefone, cpf, email, endereco, cargo, data_admissao, creci, foto, genero, cidade, bairro, direcao){
 
 		
 		$('#nome_mostrar').text(nome);
@@ -225,7 +231,7 @@ HTML;
 		$('#genero_mostrar').text(genero);
 		$('#cidade_mostrar').text(cidade);
 		$('#bairro_mostrar').text(bairro);
-	
+		$('#direcao_mostrar').text(direcao);
 
 		$('#modalMostrar').modal('show');		
 	}
@@ -244,7 +250,7 @@ HTML;
 
 		$('#genero').val('');
 		$('#agencia').val('');
-
+		$('#direcao').val('');
 	
 	}
 

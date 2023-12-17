@@ -203,7 +203,7 @@ if( @$_GET['pagina'] == ""){
 									<li class="<?php echo @$nivel_academico ?>"><a href="index.php?pagina=nivel_academico"><i class="fa fa-angle-right"></i> Nível Académico</a></li>
 
 									<li class="<?php echo @$cidades ?>"><a href="index.php?pagina=cidades"><i class="fa fa-angle-right"></i> Cidades</a></li-->
-									<li class="<?php echo @$vagas?>"><a href="index.php?pagina=vagas"><i class="fa fa-angle-right"></i> Vagas</a></li>
+									
 									<li class="<?php echo @$pelouros?>"><a href="index.php?pagina=pelouros"><i class="fa fa-angle-right"></i> Área</a></li>
 
 									<li class="<?php echo @$direcoes ?>"><a href="index.php?pagina=direcoes"><i class="fa fa-angle-right"></i> Departamentos</a></li>
@@ -215,7 +215,11 @@ if( @$_GET['pagina'] == ""){
 								</ul>
 							</li>
 
-
+							<li class="treeview <?php echo @$vaga ?>">
+								<a href="index.php?pagina=vagas">
+									<i class="fa fa-desktop" aria-hidden="true"></i> <span>Vagas</span>
+								</a>
+							</li>
 							<li class="treeview <?php echo @$menu_candidaturas ?>">
 								<a href="#">
 									<i class="fa fa-download" aria-hidden="true"></i>
@@ -240,7 +244,7 @@ if( @$_GET['pagina'] == ""){
 							</li>
 
 
-							<!--li class="treeview <?php echo @$menu_perfil ?>">
+							<li class="treeview <?php echo @$menu_perfil ?>">
 								<a href="#">
 									<i class="fa fa-user" aria-hidden="true"></i>
 									<span>Perfil</span>
@@ -251,7 +255,7 @@ if( @$_GET['pagina'] == ""){
 									<li class="<?php echo @$atualizar_candidato ?>"><a href="index.php?pagina=atualizar_candidato"><i class="fa fa-angle-right"></i> Atualizar Dados</a></li>
 
 								</ul>
-							</li-->
+							</li>
 
 							<li class="treeview <?php echo @$menu_recrutador ?>">
 								<a href="#">
@@ -535,13 +539,13 @@ if( @$_GET['pagina'] == ""){
 					<div class="modal-body">
 
 						<div class="row">
-							<div class="col-md-12">						
+							<div class="col-md-6">						
 								<div class="form-group"> 
 									<label>Nome</label> 
 									<input type="text" class="form-control" name="nome_usu" value="<?php echo $nome_user ?>" required> 
 								</div>						
 							</div>
-							<div class="col-md-6" hidden="">
+							<div class="col-md-6">
 								<div class="form-group"> 
 									<label>BI</label> 
 									<input type="text" class="form-control" id="cpf_usu" name="cpf_usu" value="<?php echo $cpf_user ?>" required> 
@@ -994,6 +998,7 @@ if( @$_GET['pagina'] == ""){
 												<option value="">Todos</option>
 												<option value="Masculino">MASCULINO</option>
 												<option value="Feminino">FEMININO</option>
+												<option value="Outro">OUTRO</option>
 											</select> 
 										</div>						
 									</div> 	
@@ -1357,6 +1362,7 @@ if( @$_GET['pagina'] == ""){
 												<!-- <option value="">Todos</option> -->
 												<option value="Masculino">MASCULINO</option>
 												<option value="Feminino">FEMININO</option>
+												<option value="Outro">OUTRO</option>
 											</select> 
 										</div>						
 									</div> 	

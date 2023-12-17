@@ -85,7 +85,7 @@ if(@$funcionarios == 'ocultar'){
 						<div class="col-md-4">						
 							<div class="form-group"> 
 								<label>Direcção</label> 
-								<select class="form-control sel2" name="direcoes" id="direcoes" required style="width:100%;"> 
+								<select class="form-control sel2" name="direcao" id="direcao" required style="width:100%;"> 
 									<?php 
 									$query = $pdo->query("SELECT * FROM direcoes order by nome asc");
 									$res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -252,13 +252,10 @@ if(@$funcionarios == 'ocultar'){
 
 
 					<div class="row" style="border-bottom: 1px solid #cac7c7;">
-						<div class="col-md-6">							
-							<span><b>Cidade: </b></span>
-							<span id="cidade_mostrar"></span>							
-						</div>
-						<div class="col-md-6">							
-							<span><b>Província: </b></span>
-							<span id="bairro_mostrar"></span>
+						
+						<div class="col-md-12">							
+							<span><b>Direcção: </b></span>
+							<span id="direcao_mostrar"></span>
 						</div>
 					</div>	
 

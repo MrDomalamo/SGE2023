@@ -47,6 +47,8 @@ $total_compradores = 0;
 $total_vendedores = 0;
 $total_imoveis = 0;
 $total_locatarios = 0;
+$total_vagas = 0;
+
 
 
 $total_pelouros = 0;
@@ -101,6 +103,10 @@ $total_corretores = @count($res);
 $query = $pdo->query("SELECT * FROM usuarios WHERE nivel = 'Recrutador' and ativo = 'Sim'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_recrutadores = @count($res);
+
+$query = $pdo->query("SELECT * FROM vagas");
+$res = $query->fetchAll(PDO::FETCH_ASSOC);
+$total_vagas = @count($res);
 
 $query = $pdo->query("SELECT * FROM usuarios WHERE nivel = 'Diretor' and ativo = 'Sim'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -395,18 +401,18 @@ for($i=1; $i <= 12; $i++){
 <div class="main-page">
 			<div class="col_3">
 							
-			<!-- <a href="#">	
+			<a href="#">	
         	<div class="col-md-3 widget widget1">
         		<div class="r3_counter_box">
                     <i class="pull-left fa fa-user user01 icon-rounded"></i>
                     <div class="stats">
-                      <h5><strong><?php echo @$total_diretores ?></strong></h5>
-                      <span>Diretores</span>
+                      <h5><strong><?php echo @$total_vagas ?></strong></h5>
+                      <span>Vagas</span>
                     </div>
                 </div>
         	</div>
-        	</a> -->
-<!-- 
+        	</a> 
+
         	<a href="#">
         	<div class="col-md-3 widget widget1">
         		<div class="r3_counter_box">
@@ -417,8 +423,9 @@ for($i=1; $i <= 12; $i++){
                     </div>
                 </div>
         	</div>
-        	</a> -->
-        	<a href="#">
+        	</a> 
+
+        	<!-- <a href="#">
         	<div class="col-md-3 widget widget1">
         		<div class="r3_counter_box">
                     <i class="pull-left fa fa-university user02 icon-rounded"></i>
@@ -439,7 +446,7 @@ for($i=1; $i <= 12; $i++){
                     </div>
                 </div>
         	 </div>
-        	 </a>
+        	 </a> -->
 			 <!-- <a href="#">
         	<div class="col-md-3 widget">
         		<div class="r3_counter_box">

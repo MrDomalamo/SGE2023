@@ -82,15 +82,16 @@ if(@$atualizar_recrutador == 'ocultar'){
 							<div class="form-group"> 
 								<label>Gênero</label> 
 								<select class="form-control" name="genero" id="genero"> 
-									<option value="Masculino">MASCULINO</option>
-									<option value="Feminino">FEMININO</option>
+									<option value="Masculino">Masculino</option>
+									<option value="Feminino">Feminino</option>
+									<option value="Outro">Outro</option>
 								</select>
 							</div>
 							</div>
 							<div class="col-md-4">
 						<div class="form-group"> 
 							<label>Código</label> 
-							<input type="text" class="form-control" name="cpf" id="cpf" maxlength="6" placeholder="EDM123"> 
+							<input type="text" class="form-control" name="cpf" id="cpf" maxlength="6" placeholder="MediaMais2023"> 
 						</div>
 					</div>
 
@@ -232,7 +233,7 @@ if(@$atualizar_recrutador == 'ocultar'){
 							<span id="genero_mostrar"></span>							
 						</div>
 						<div class="col-md-6">							
-							<span><b>BI: </b></span>
+							<span><b>Código do funcionario: </b></span>
 							<span id="cpf_mostrar"></span>							
 						</div>
 						
@@ -252,11 +253,7 @@ if(@$atualizar_recrutador == 'ocultar'){
 					</div>
 
 
-					<div class="row" style="border-bottom: 1px solid #cac7c7;">
-						<div class="col-md-6">							
-							<span><b>Código do Funcionário: </b></span>
-							<span id="creci_mostrar"></span>
-						</div>
+					<div class="row" style="border-bottom: 1px solid #cac7c7;">					
 						<div class="col-md-6">							
 							<span><b>Cargo: </b></span>
 							<span id="cargo_mostrar"></span>
@@ -264,19 +261,14 @@ if(@$atualizar_recrutador == 'ocultar'){
 						
 					</div>
 
-
-						
-
-
-
 					<div class="row" style="border-bottom: 1px solid #cac7c7;">
 						<div class="col-md-6">							
-							<span><b>Cidade: </b></span>
-							<span id="cidade_mostrar"></span>							
+							<span><b>Departamento: </b></span>
+							<span id="direcao_mostrar"></span>							
 						</div>
 						<div class="col-md-6">							
-							<span><b>Província: </b></span>
-							<span id="bairro_mostrar"></span>
+							<span><b>Área: </b></span>
+							<span id="pelouro_mostrar"></span>
 						</div>
 					</div>	
 

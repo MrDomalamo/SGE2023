@@ -71,18 +71,8 @@ if(@$atualizar_candidato == 'ocultar'){
 							</div>						
 						</div>
 
-						
 
-						
-
-						<div class="col-md-4">						
-							<div class="form-group"> 
-								<label>Data de Nanscimento</label> 
-								<input type="date" class="form-control" name="data_nasc" id="data_nasc" value="<?php echo date('Y-m-d') ?>"> 
-							</div>						
-						</div>
-
-						<div class="col-md-4">
+						<div class="col-md-8">
 						<div class="form-group"> 
 							<label>Endereço</label> 
 							<input type="text" class="form-control" name="endereco" id="endereco" placeholder="Rua X Número 20 Bairro X"> 
@@ -90,25 +80,7 @@ if(@$atualizar_candidato == 'ocultar'){
 					</div>
 
 					
-<!-- 
-						<div class="col-md-4">						
-							<div class="form-group"> 
-								<label>Perfil</label> 
-								<select class="form-control sel2" name="cargo" id="cargo" required style="width:100%;"> 
-									<?php 
-									$query = $pdo->query("SELECT * FROM cargos where nome = 'Candidato' order by nome asc");
-									$res = $query->fetchAll(PDO::FETCH_ASSOC);
-									for($i=0; $i < @count($res); $i++){
-										foreach ($res[$i] as $key => $value){}
 
-											?>	
-										<option value="<?php echo $res[$i]['id'] ?>"><?php echo $res[$i]['nome'] ?></option>
-
-									<?php } ?>
-
-								</select>
-							</div>						
-						</div> -->
 
 						
 
@@ -125,10 +97,8 @@ if(@$atualizar_candidato == 'ocultar'){
 							<div class="form-group"> 
 								<label>Estado Civil</label> 
 								<select class="form-control" name="estado_civil" id="estado_civil"> 
-									<option value="Casado">CASADO (A)</option>
-									<option value="Divorciado">DIVORCIADO (A)</option>
-									<option value="Viuvo">VIUVO (A)</option>
-									<option value="Solteiro">SOLTEIRO (A)</option>
+									<option value="Casado">CASADO(A)</option>			
+									<option value="Solteiro">SOLTEIRO(A)</option>
 								</select>
 							</div>
 						</div>
@@ -136,7 +106,7 @@ if(@$atualizar_candidato == 'ocultar'){
 						<div class="col-md-4">						
 							<div class="form-group"> 
 								<label>Idade</label> 
-								<input type="text" class="form-control" name="idade" id="idade" required> 
+								<input type="number" class="form-control" name="idade" id="idade" required> 
 							</div>						
 						</div>
 
@@ -147,6 +117,7 @@ if(@$atualizar_candidato == 'ocultar'){
 								<select class="form-control" name="genero" id="genero"> 
 									<option value="Masculino">MASCULINO</option>
 									<option value="Feminino">FEMININO</option>
+									<option value="Outro">OUTRO</option>
 								</select>
 							</div>
 							</div>
