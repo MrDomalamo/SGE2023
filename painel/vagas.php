@@ -2,6 +2,15 @@
 require_once("verificar.php");
 require_once("../conexao.php");
 $pag = 'vagas';
+@session_start();
+$id_usuario = $_SESSION['id_usuario'];
+$nivel_usuario = $_SESSION['nivel_usuario'];
+$query = $pdo->query("SELECT * FROM usuarios WHERE id = '$id_usuario'");
+$res = $query->fetchAll(PDO::FETCH_ASSOC);
+$total_reg = @count($res);
+if($total_reg > 0){
+	$nivel_usu = $res[0]['nivel'];
+}
 
 //verificar se ele tem a permissão de estar nessa página
 if(@$vagas == 'ocultar'){
@@ -10,9 +19,15 @@ if(@$vagas == 'ocultar'){
 }
 
  ?>
-
- <button onclick="inserir()" type="button" class="btn btn-primary btn-flat btn-pri"><i class="fa fa-plus" aria-hidden="true"></i> Nova vaga</button>
-
+<?php
+ if($nivel_usu != 'Candidato' && $nivel_usu != 'Recrutador'){
+	echo <<<HTML
+	<button onclick="inserir()" type="button" class="btn btn-primary btn-flat btn-pri"><i class="fa fa-plus" aria-hidden="true"></i> Cadastrar Vaga</button>
+HTML;
+	
+ }
+ 
+ ?>
  <!--<button type="button" class="btn btn-primary btn-flat btn-pri"><li class="<?php echo @$rel_funcionarios ?>"><a href="#" data-toggle="modal" data-target="#RelFun" style="color:#fff"><i class="fa fa-plus" aria-hidden="true"></i> PDF</a></li></button>-->
 
 <div class="bs-example widget-shadow" style="padding:15px" id="listar">
@@ -72,15 +87,7 @@ if(@$vagas == 'ocultar'){
 										</select>
 									</div>	
 							</div>
-							
-							
-													
-
-
-								
-
-								
-							
+												
 									<div class="col-md-6">						
 									<div class="form-group"> 
 										<label>Direcção*</label> 
@@ -114,7 +121,59 @@ if(@$vagas == 'ocultar'){
 	</div>
 </div>
 
+<div class="modal fade" id="modalConcorrer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				Concorrer a Vaga de: 
+				<h4 class="modal-title" id="nome_concorrer"></h4>
+				<button id="btn-fechar-concorrer" type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top: -20px">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form method="post" id="formConcorrer">
+				<div class="modal-body">
 
+						<div class="row">
+
+							<div class="row" style="border-bottom: 1px solid #cac7c7;">
+						<div class="col-md-6">							
+							<span><b>Departamento: </b></span>
+							<span id="direcao_concorrer"></span>							
+						</div>
+						<div class="col-md-6">							
+							<span><b>Área: </b></span>
+							<span id="pelouro_concorrer"></span>
+						</div>
+					</div>	
+					<div class="row" style="border-bottom: 1px solid #cac7c7;">
+						<div class="col-md-12">							
+							<span><b>Descrição: </b></span>
+							<span id="descricao_concorrer"></span>							
+						</div>
+					</div>
+												
+					</div>				
+					
+
+					<br>
+					<input type="hidden" name="id_concorrer" id="id_concorrer"> 
+					<small><div id="mensagem_concorrer" align="center" class="mt-3"></div></small>					
+
+				</div>
+
+
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary">Submeter</button>
+				</div>
+
+
+
+			</form>
+
+		</div>
+	</div>
+</div>
 
 
 
@@ -177,7 +236,6 @@ if(@$vagas == 'ocultar'){
 			dropdownParent: $('#modalForm')
 		});
 
-
 		listarDirecoes();
 
 		$('#pelouro').change(function(){
@@ -186,6 +244,37 @@ if(@$vagas == 'ocultar'){
 	});
 </script>
 
+<script type="text/javascript">
+		$("#formConcorrer").submit(function () {
+			event.preventDefault();
+			var formData = new FormData(this);
+
+			$.ajax({
+				url: pag + "/submeter.php",
+				type: 'POST',
+				data: formData,
+
+				success: function (mensagem) {
+					$('#mensagem_concorrer').text('');
+					$('#mensagem_concorrer').removeClass()
+					if (mensagem.trim() == "Salvo com Sucesso") {                    
+						$('#btn-fechar-concorrer').click();						
+						listar();
+					} else {
+						$('#mensagem_concorrer').addClass('text-danger')
+						$('#mensagem_concorrer').text(mensagem)
+					}
+
+				},
+
+				cache: false,
+				contentType: false,
+				processData: false,
+
+			});
+
+		});
+	</script>
 
 <script type="text/javascript">
 	$(document).ready(function() {

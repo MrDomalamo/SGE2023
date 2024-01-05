@@ -13,7 +13,7 @@ if($total_reg > 0){
 	<thead> 
 	<tr> 
 	<th>Direcções</th>
-	<th>Pelouros</th>		
+	<th>Áreas</th>		
 	<th>Ações</th>
 	</tr> 
 	</thead> 

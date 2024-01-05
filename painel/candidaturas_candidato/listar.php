@@ -50,6 +50,7 @@ HTML;
 		foreach ($res[$i] as $key => $value){}
 		$id = $res[$i]['id'];
 		$candidato = $res[$i]['candidato'];
+		$vaga = $res[$i]['vagas'];
 		$recrutador = $res[$i]['recrutador'];
 		$finalidade = $res[$i]['finalidade'];
 		$cidade = $res[$i]['cidade'];
@@ -89,6 +90,51 @@ HTML;
 		}else{
 		
 			// $nome_candidato = 'Sem Registro';
+		}
+
+		$query2 = $pdo->query("SELECT * FROM vagas where id = '$vaga'");
+		$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+		if(@count($res2) > 0){
+			$nome_vaga = $res2[0]['nome'];
+			$codigo_direcao = $res2[0]['direcao'];
+			$codigo_pelouro = $res2[0]['pelouro'];
+			$descricao_vaga= $res2[0]['descricao'];
+		}else{
+		
+			$nome_vaga = ' ';
+			$codigo_direcao = ' ';
+			$codigo_pelouro = ' ';
+			$descricao_vaga = ' ';
+
+		}
+		$query5 = $pdo->query("SELECT * FROM candidaturas where vagas = '$vaga' and candidato = '$id_usuario'");
+		$res5 = $query5->fetchAll(PDO::FETCH_ASSOC);
+		if($res5 >= 0 && $nivel_usuario == 'Candidato'){
+			$editar_ususario = 'ocultar';
+		}else{
+			$editar_ususario = '';
+		}
+		
+		$query2 = $pdo->query("SELECT * FROM pelouros where id = '$codigo_pelouro'");
+		$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+		if(@count($res2) > 0){
+			$nome_pelouro_vagas = $res2[0]['nome'];
+
+		}else{
+		
+			$nome_pelouro_vagas = ' ';
+
+		}
+
+		$query2 = $pdo->query("SELECT * FROM direcoes where id = '$codigo_direcao'");
+		$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+		if(@count($res2) > 0){
+			$nome_direcao_vagas = $res2[0]['nome'];
+
+		}else{
+		
+			$nome_direcao_vagas = ' ';
+
 		}
 
 		$query2 = $pdo->query("SELECT * FROM candidatos where id = '$idcandidato'");
@@ -179,7 +225,7 @@ HTML;
 		$data_inicioF = implode('/', array_reverse(explode('-', $data_inicio)));
 		$data_finalF = implode('/', array_reverse(explode('-', $data_final)));
 		$data_cadF = implode('/', array_reverse(explode('-', $data_cad)));
-	
+		$descricao = str_replace('"', "**", $descricao);
 		//extensão do arquivo 
 $ext = pathinfo($arquivo, PATHINFO_EXTENSION);
 if($ext == 'pdf'){
@@ -196,12 +242,11 @@ if($ext == 'pdf'){
 	$tumb_arquivo = $arquivo;
 }
 		
-
-// <a href="images/arquivos/{$arquivo}" target="_blank"><img src="images/arquivos/{$tumb_arquivo}" width="30px" height="18px"  if($tumb_arquivo = 'sem-foto.png'){
-// 	title="A sua candidatura nao possui nenhum documento atualmente!"
-// }else{
-// title="Clique para baixar o arquivo" 
-// }></a>
+/*if($nivel_usuario == 'Candidato'){
+	$editar_ususario = 'ocultar';
+}else{
+	$editar_ususario = '';
+}*/
 
 		echo <<<HTML
 		<tr class="{$classe_linha}"> 
@@ -219,11 +264,11 @@ if($ext == 'pdf'){
 													
 
 	
+ 
+<big><a class="$editar_ususario" href="#" onclick="editar('{$id}', '{$candidato}', '{$finalidade}', '{$bairro}', '{$cidade}','{$descricao}')" title="Editar Dados"><i class="fa fa-edit text-primary"></i></a></big>
 
-<big><a href="#" onclick="editar('{$id}', '{$candidato}', '{$finalidade}', '{$bairro}', '{$cidade}','{$descricao}')" title="Editar Dados"><i class="fa fa-edit text-primary"></i></a></big>
-
-<big><a href="#" onclick="mostrar('{$nome_candidato}', '{$telefone_candidato}', '{$genero_candidato}', '{$idade_candidato}', '{$nome_curso}', '{$nome_instituicoes}' , '{$nome_nivel_academico}', '{$finalidade}' ,'{$nome_bairro}' ,'{$nome_cidade}'  ,'{$nome_direcoes}' ,'{$nome_pelouro}' , '{$data_cadF}', '{$data_inicioF}','{$data_finalF}' ,'{$estado}', '{$descricao}')" title="Ver Dados"><i class="fa fa-info-circle text-secondary"></i></a></big>
-
+<big><a href="#" onclick="mostrar('{$nome_candidato}', '{$telefone_candidato}', '{$genero_candidato}', '{$idade_candidato}', '{$nome_curso}', '{$nome_instituicoes}' , '{$nome_nivel_academico}', '{$finalidade}' ,'{$nome_bairro}' ,'{$nome_cidade}'  ,'{$nome_direcoes}' ,'{$nome_pelouro}' , '{$data_cadF}', '{$data_inicioF}','{$data_finalF}' ,'{$estado}', '{$descricao}', 
+'{$nome_vaga}', '{$nome_pelouro_vagas}', '{$nome_direcao_vagas}', '{$descricao_vaga}')" title="Ver Dados"><i class="fa fa-info-circle text-secondary"></i></a></big>
 
 
 
@@ -259,7 +304,11 @@ $('#tabela_filter label input').focus();
 
 
 function editar(id, candidato, finalidade, bairro, cidade, descricao){
-
+	for(let letra of descricao){
+		if(letra == '+'){
+			descricao = descricao.replace('+ +', '\n')
+		}
+	}
 
 $('#id').val(id);
 $('#candidato').val(candidato).change();
@@ -274,8 +323,12 @@ $('#mensagem').text('');
 }
 
 
-function mostrar(nome, telefone, genero, idade, curso, instituicoes, nivel_academico, finalidade, bairro, cidade, direcoes, pelouro, data_cad, data_inicio, data_final, estado, descricao){
-
+function mostrar(nome, telefone, genero, idade, curso, instituicoes, nivel_academico, finalidade, bairro, cidade, direcoes, pelouro, data_cad, data_inicio, data_final, estado, descricao, nome_vaga, nome_pelouro_vagas, nome_direcao_vagas, descricao_vaga){
+	for(let letra of descricao){
+		if(letra == '+'){
+			descricao = descricao.replace('+ +', '\n')
+		}
+	}
 
 $('#nome_mostrar').text(nome);
 $('#telefone_mostrar').text(telefone);
@@ -294,8 +347,11 @@ $('#data_inicio_mostrar').text(data_inicio);
 $('#data_final_mostrar').text(data_final);		
 $('#estado_mostrar').text(estado);	
 // $('#target_mostrar').attr('src','images/arquivos/' + arquivo);		
-$('#descricao_mostrar').text(descricao);
-
+$('#descricao_mostrar_mostrar').text(descricao);
+$('#nome_pelouro_vagas_mostrar').text(nome_pelouro_vagas);
+$('#nome_vaga_mostrar').text(nome_vaga);
+$('#nome_pelouro_vagas_mostrar').text(nome_pelouro_vagas); 
+$('#nome_direcao_vagas_mostrar').text(nome_direcao_vagas); 
 $('#modalMostrar').modal('show');	
 
 }

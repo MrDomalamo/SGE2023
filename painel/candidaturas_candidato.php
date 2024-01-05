@@ -243,8 +243,14 @@ HTML;
 							<span id="descricao_mostrar"></span>	
 						</div>
 					</div>
-
 					
+					<div class="row">
+						<div class="col-md-6">							
+						<span><b>Nome da Vaga: </b></span>
+							<span id="nome_vaga_mostrar"></span>	
+						</div>
+					</div> 
+
 
 					
 
@@ -259,8 +265,7 @@ HTML;
 						</div>
 					</div> -->
 					
-								
-
+	
 				</div>
 
 

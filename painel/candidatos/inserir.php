@@ -6,7 +6,7 @@ $nome = $_POST['nome'];
 $telefone = $_POST['telefone'];
 $cpf = $_POST['cpf'];
 $email = $_POST['email']; 
-$data_nasc = $_POST['data_nasc'];
+//$data_nasc = $_POST['data_nasc'];
 $idade = $_POST['idade'];
 $endereco = $_POST['endereco'];
 $nivel_academico = $_POST['nivel_academico'];
@@ -88,7 +88,7 @@ $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 
 
 	if($id == ""){
-		$query = $pdo->prepare("INSERT INTO $tabela SET nome = :nome, telefone = :telefone, cpf = :cpf, email = :email, nacionalidade =:nacionalidade ,  endereco = :endereco, data_cadastro = curDate(), data_nasc = '$data_nasc' , idade =:idade, nivel_academico = '$nivel_academico', cargo = '$cargo',instituicoes = '$instituicoes', curso = '$curso' ,cidade = '$cidade', bairro = '$bairro' ,genero = '$genero' ,estado_civil = '$estado_civil' ,foto = '$foto', ativo = 'Sim' ");
+		$query = $pdo->prepare("INSERT INTO $tabela SET nome = :nome, telefone = :telefone, cpf = :cpf, email = :email, nacionalidade =:nacionalidade ,  endereco = :endereco, data_cadastro = curDate() , idade =:idade, nivel_academico = '$nivel_academico', cargo = '$cargo',instituicoes = '$instituicoes', curso = '$curso' ,cidade = '$cidade', bairro = '$bairro' ,genero = '$genero' ,estado_civil = '$estado_civil' ,foto = '$foto', ativo = 'Sim' ");
 	
 	$query->bindValue(":nome", "$nome");
 	$query->bindValue(":telefone", "$telefone");
@@ -117,7 +117,7 @@ $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 		}
 		
 	}else{
-		$query = $pdo->prepare("UPDATE $tabela SET nome = :nome, telefone = :telefone, cpf = :cpf, email = :email,nacionalidade =:nacionalidade , data_nasc = '$data_nasc' , idade =:idade, nivel_academico = '$nivel_academico', cargo = '$cargo',instituicoes = '$instituicoes', curso = '$curso' ,cidade = '$cidade', bairro = '$bairro' ,genero = '$genero' , endereco = :endereco, estado_civil = '$estado_civil' ,foto = '$foto', ativo = 'Sim' WHERE id = '$id'");
+		$query = $pdo->prepare("UPDATE $tabela SET nome = :nome, telefone = :telefone, cpf = :cpf, email = :email,nacionalidade =:nacionalidade , idade =:idade, nivel_academico = '$nivel_academico', cargo = '$cargo',instituicoes = '$instituicoes', curso = '$curso' ,cidade = '$cidade', bairro = '$bairro' ,genero = '$genero' , endereco = :endereco, estado_civil = '$estado_civil' ,foto = '$foto', ativo = 'Sim' WHERE id = '$id'");
 	
 	$query->bindValue(":nome", "$nome");
 	$query->bindValue(":telefone", "$telefone");

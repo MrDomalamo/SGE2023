@@ -44,7 +44,8 @@ $query = $pdo->prepare("INSERT INTO usuarios_permissoes SET usuario = '$id_usu',
 $query->execute();
 $query = $pdo->prepare("INSERT INTO usuarios_permissoes SET usuario = '$id_usu', permissao = '56' ");
 $query->execute();
-
+$query = $pdo->prepare("INSERT INTO usuarios_permissoes SET usuario = '$id_usu', permissao = '74' ");
+$query->execute();
 echo 'Cadastrado com Sucesso';
 
 

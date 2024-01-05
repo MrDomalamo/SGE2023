@@ -35,10 +35,16 @@ HTML;
 		$direcao = $res[$i]['direcao'];
 		$pelouro = $res[$i]['pelouro'];
 		
-
-	
-
-
+		if($nivel_usuario == 'Candidato' || $nivel_usuario == 'Recrutador'){
+			$editar_ususario = 'ocultar';
+		}else{
+			$editar_ususario = '';
+		}
+		if($nivel_usuario != 'Candidato'){
+			$editar_user = 'ocultar';
+		}else{
+			$editar_user = '';
+		}
 		$query2 = $pdo->query("SELECT * FROM direcoes where id = '$direcao'");
 		$res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 		if(@count($res2) > 0){
@@ -63,13 +69,16 @@ HTML;
 		<td class="esc">{$nome_direcao}</td>
 		<td class="esc">{$nome_pelouro}</td>
 		<td>
-
-		<big><a href="#" onclick="editar('{$id}', '{$nome}', '{$descricao}', '{$direcao}', '{$pelouro}')" title="Editar Dados"><i class="fa fa-edit text-primary"></i></a></big>
+		
+	
+		<big> <a class="$editar_ususario" href="#" onclick="editar('{$id}', '{$nome}', '{$descricao}', '{$direcao}', '{$pelouro}')" title="Editar Dados"><i class="fa fa-edit text-primary"></i></a></big>
+		
+		<big> <a class= "$editar_user" href="#" onclick="concorrer('{$id}', '{$nome}', '{$descricao}', '{$nome_direcao}', '{$nome_pelouro}')" title="Enviar"><i class="fa fa-paper-plane"></i></a></big> 
 
 		<big><a href="#" onclick="mostrar('{$nome}', '{$descricao}', '{$nome_direcao}', '{$nome_pelouro}')" title="Ver Dados"><i class="fa fa-info-circle text-secondary"></i></a></big>
 
 		<li class="dropdown head-dpdn2" style="display: inline-block;">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><big><i class="fa fa-trash-o text-danger"></i></big></a>
+		<a class="$editar_ususario" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><big><i class="fa fa-trash-o text-danger"></i></big></a>
 
 		<ul class="dropdown-menu" style="margin-left:-230px;">
 		<li>
@@ -125,7 +134,17 @@ HTML;
 		$('#mensagem').text('');
 	}
 
+function concorrer(id, nome, descricao, direcao, pelouro){
 
+	$('#id_concorrer').val(id);
+	$('#nome_concorrer').text(nome);
+	$('#descricao_concorrer').text(descricao);
+	$('#direcao_concorrer').text(direcao);
+	$('#pelouro_concorrer').text(pelouro);	
+	$('#tituloModalConcorrer').text('Concorrer Vaga');
+	$('#modalConcorrer').modal('show');
+	$('#mensagemConcorrer').text('');
+}
 
 	function mostrar(nome, descricao, direcao, pelouro){
 

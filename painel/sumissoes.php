@@ -11,7 +11,7 @@ if(@$vagas == 'ocultar'){
 
  ?>
 
- <button onclick="inserir()" type="button" class="btn btn-primary btn-flat btn-pri"><i class="fa fa-plus" aria-hidden="true"></i> Nova vaga</button>
+ <button onclick="inserir()" type="button" class="btn btn-primary btn-flat btn-pri"><i class="fa fa-plus" aria-hidden="true"></i> Candidatar-se</button>
 
  <!--<button type="button" class="btn btn-primary btn-flat btn-pri"><li class="<?php echo @$rel_funcionarios ?>"><a href="#" data-toggle="modal" data-target="#RelFun" style="color:#fff"><i class="fa fa-plus" aria-hidden="true"></i> PDF</a></li></button>-->
 

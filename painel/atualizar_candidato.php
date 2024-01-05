@@ -79,12 +79,6 @@ if(@$atualizar_candidato == 'ocultar'){
 						</div>
 					</div>
 
-					
-
-
-						
-
-
 					</div>
 
 
@@ -283,19 +277,17 @@ if(@$atualizar_candidato == 'ocultar'){
 							<span><b>Email: </b></span>
 							<span id="email_mostrar"></span>							
 						</div>
-						<div class="col-md-6">							
-							<span><b>Endereço: </b></span>
-							<span id="endereco_mostrar"></span>							
+						<div class="col-md-6">	
+							<span><b>Data Cadastro: </b></span>
+							<span id="data_cad_mostrar"></span>							
+												
 						</div>
 						
 					</div>
 
 
 					<div class="row" style="border-bottom: 1px solid #cac7c7;">
-						<div class="col-md-6">							
-							<span><b>Data de Nascimento: </b></span>
-							<span id="data_adm_mostrar"></span>							
-						</div>
+						
 						
 						<div class="col-md-6">							
 							<span><b>Nacionalidade: </b></span>
@@ -354,8 +346,8 @@ if(@$atualizar_candidato == 'ocultar'){
 					</div>
 					<div class="row" style="border-bottom: 1px solid #cac7c7;">
 						<div class="col-md-12">							
-						<span><b>Data Cadastro: </b></span>
-							<span id="data_cad_mostrar"></span>	
+						<span><b>Endereço: </b></span>
+							<span id="endereco_mostrar"></span>	
 						</div>
 					</div>
 					

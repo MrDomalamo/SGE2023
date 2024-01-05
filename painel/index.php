@@ -244,7 +244,7 @@ if( @$_GET['pagina'] == ""){
 							</li>
 
 
-							<li class="treeview <?php echo @$menu_perfil ?>">
+							 <li class="treeview <?php echo @$menu_perfil ?>">
 								<a href="#">
 									<i class="fa fa-user" aria-hidden="true"></i>
 									<span>Perfil</span>
