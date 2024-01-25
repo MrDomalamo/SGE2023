@@ -25,7 +25,7 @@ $query = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_func'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
 if($total_reg > 0){
-	$provincia_func = $res[0]['bairro'];
+	$provincia_func = $res[0]['direcao'];
 	
 }
 
@@ -45,7 +45,7 @@ if(@$pedir_aprovacao_candidatura == 'ocultar'){
 
  ?>
 
-<button onclick="inserir()" type="button" class="btn btn-primary btn-flat btn-pri"><i class="fa fa-plus" aria-hidden="true"></i> Pedir aprovacao</button>
+<button onclick="inserir()" type="button" class="btn btn-primary btn-flat btn-pri"><i class="fa fa-plus" aria-hidden="true"></i> Pedir aprovação</button>
 <div class="bs-example widget-shadow" style="padding:15px" id="listar">
 	
 </div>
@@ -66,42 +66,18 @@ if(@$pedir_aprovacao_candidatura == 'ocultar'){
 			<form method="post" id="form">
 				<div class="modal-body">
 
-					<div class="row">
-								<div class="col-md-6">						
-									<div class="form-group"> 
-										<label>Diretor*</label> 
-										<select class="form-control sel2" name="diretor" id="diretor" required style="width:100%;"> 
-											<?php 
-											if($nivel_usu == 'Diretor' || $nivel_usu == 'Recrutador'){
-												$query = $pdo->query("SELECT * FROM funcionarios where bairro = '$provincia_func' and cargo = '$cargo' order by id asc");
-											}else{
-												$query = $pdo->query("SELECT * FROM usuarios where nivel = 'Diretor' or nivel = 'Administrador' order by id asc");
-											}
-
-											$res = $query->fetchAll(PDO::FETCH_ASSOC);
-											for($i=0; $i < @count($res); $i++){
-												foreach ($res[$i] as $key => $value){}
-
-													?>	
-												<option value="<?php echo $res[$i]['id'] ?>"><?php echo $res[$i]['nome'] ?> - <?php echo $res[$i]['cpf'] ?></option>
-
-											<?php } ?>
-
-										</select>
-									</div>					
-								</div>
-
+					<div class="row">				
 
 								<div class="col-md-6">						
 									<div class="form-group"> 
-										<label>Candidato*</label> 
+										<label>Candidato: </label> 
 										<select class="form-control sel2" name="candidato" id="candidato" required style="width:100%;"> 
 											<?php 
-											if($nivel_usu == 'Diretor' || $nivel_usu == 'Recrutador'){
-												$query = $pdo->query("SELECT * FROM candidatos where bairro = '$provincia_func' order by id asc");
-											}else{
-												$query = $pdo->query("SELECT * FROM usuarios where nivel = 'Candidato' or nivel = 'Administrador' order by id asc");
-											}
+											if( $nivel_usu == 'Diretor' || $nivel_usu == 'Recrutador'){
+												$query = $pdo->query("SELECT * FROM candidatos order by id asc");}
+											// }else{
+											// 	$query = $pdo->query("SELECT * FROM usuarios where nivel = 'Candidato' order by id asc");
+											// }
 
 											$res = $query->fetchAll(PDO::FETCH_ASSOC);
 											for($i=0; $i < @count($res); $i++){
@@ -115,7 +91,29 @@ if(@$pedir_aprovacao_candidatura == 'ocultar'){
 										</select>
 									</div>					
 								</div>
+								<div class="col-md-6">						
+									<div class="form-group"> 
+										<label>Código da Vaga: </label> 
+										<select class="form-control sel2" name="departamento" id="departamento" required style="width:100%;"> 
+											<?php 
+											if( $nivel_usu == 'Recrutador' || $nivel_usu == 'Director'){
+												$query = $pdo->query("SELECT * FROM candidaturas WHERE direcoes = '$provincia_func' order by id asc");
+											}else{
+												$query = $pdo->query("SELECT * FROM usuarios where nivel = 'Candidato' order by id asc");
+											 }
 
+											$res = $query->fetchAll(PDO::FETCH_ASSOC);
+											for($i=0; $i < @count($res); $i++){
+												foreach ($res[$i] as $key => $value){}
+
+													?>	
+												<option value="<?php echo $res[$i]['id'] ?>"> MM - <?php echo $res[$i]['id'] ?></option>
+
+											<?php } ?>
+
+										</select>
+									</div>					
+								</div>
 
 								
 
@@ -123,11 +121,6 @@ if(@$pedir_aprovacao_candidatura == 'ocultar'){
 
 					</div>
 
-
-			
-
-							
-					
 
 					<br>
 					<input type="hidden" name="id" id="id"> 
@@ -166,7 +159,7 @@ if(@$pedir_aprovacao_candidatura == 'ocultar'){
 				<div class="modal-body">			
 					<div class="row" style="border-bottom: 1px solid #cac7c7;">
 							<div class="col-md-6">							
-								<span><b>Nivel Academico: </b></span>
+								<span><b>Nivel Académico: </b></span>
 								<span id="nivel_academico_mostrar"></span>							
 							</div>
 							<div class="col-md-6">							
@@ -189,10 +182,11 @@ if(@$pedir_aprovacao_candidatura == 'ocultar'){
 
 
 					<div class="row" style="border-bottom: 1px solid #cac7c7;">
-						<div class="col-md-6">							
-								<span><b>Finalidade: </b></span>
-								<span id="finalidade_mostrar"></span>							
-							</div>
+						<div class="col-md-6">	
+							<span><b>Institução: </b></span>
+							<span id="instituicoes_mostrar"></span>							
+													
+						</div>
 							
 
 							<div class="col-md-4">							
@@ -205,57 +199,15 @@ if(@$pedir_aprovacao_candidatura == 'ocultar'){
 
 					<div class="row" style="border-bottom: 1px solid #cac7c7;">
 
-							<div class="col-md-6">							
+							<div class="col-md-6">	
 								<span><b>Recrutador: </b></span>
 								<span id="recrutador_mostrar"></span>
-							</div>
+							</div>					
+														
+					<div class="row" style="border-bottom: 1px solid #cac7c7;">						
 							<div class="col-md-6">							
-									<span><b>Diretor: </b></span>
-									<span id="email_diretor_mostrar"></span>						
-								</div>
-							</div>
-									
-					<div class="row" style="border-bottom: 1px solid #cac7c7;">
-							<div class="col-md-6">							
-								<span><b>Telefone Recrutador: </b></span>
-								<span id="telefone_recrutador_mostrar"></span>
-							</div>
-							<div class="col-md-6">							
-									<span><b>Telefone Diretor: </b></span>
-									<span id="diretor_mostrar"></span>	
-								</div>
-
-							
-					</div>	
-					
-					    <div class="row" style="border-bottom: 1px solid #cac7c7;">
-							   
-								
-								<div class="col-md-6">							
-								<span><b>Email Recrutador: </b></span>
-								<span id="email_recrutador_mostrar"></span>
-							</div>
-
-								<div class="col-md-6">							
-									<span><b>Email Diretor: </b></span>
-									<span id="telefone_diretor_mostrar"></span>
-								
-							     </div>
-						
-					    </div>	
-
-
-
-					<div class="row" style="border-bottom: 1px solid #cac7c7;">
-					
-
-							<div class="col-md-6">							
-								<span><b>Descrição: </b></span>
-								<span id="descricao_mostrar"></span>	
-							</div>
-							<div class="col-md-6">							
-								<span><b>Institução: </b></span>
-								<span id="instituicoes_mostrar"></span>							
+								<span><b>Finalidade: </b></span>
+								<span id="finalidade_mostrar"></span>							
 							</div>
 					</div>
 

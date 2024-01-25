@@ -20,7 +20,7 @@ if(@$candidaturas_candidato == 'ocultar'){
 
  ?>
  <?php
- if($nivel_usu != 'Administrador'){
+ if($nivel_usu == 'Candidato'){
 	echo <<<HTML
 	<button onclick="inserir()" type="button" class="btn btn-primary btn-flat btn-pri"><i class="fa fa-plus" aria-hidden="true"></i> Pedir estagio</button>
 HTML;
@@ -250,21 +250,6 @@ HTML;
 							<span id="nome_vaga_mostrar"></span>	
 						</div>
 					</div> 
-
-
-					
-
-					
-
-					
-
-<!-- 
-					<div class="row">
-						<div class="col-md-12" align="center">		
-							<img  width="200px" id="target_mostrar">	
-						</div>
-					</div> -->
-					
 	
 				</div>
 

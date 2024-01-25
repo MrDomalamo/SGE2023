@@ -10,6 +10,8 @@ $ano_atual = Date('Y');
 $data_mes = $ano_atual."-".$mes_atual."-01";
 $data_ano = $ano_atual."-01-01";
 
+$nivel_usuario = $_SESSION['nivel_usuario'];
+
 $id_usuario = @$_SESSION['id_usuario'];
 $query = $pdo->query("SELECT * FROM usuarios WHERE id = '$id_usuario'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -27,6 +29,13 @@ if($total_reg > 0){
 	$id_candidato = $res[0]['id_candidato'];
 }
 
+if($nivel_usuario == 'Administrador'){
+	$ocultar_campos = 'ocultar';
+	$ocultar_configuracoes = '';
+}else{
+	$ocultar_campos = '';
+	$ocultar_configuracoes = 'ocultar';
+}
 $query = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_func'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
@@ -45,7 +54,6 @@ if( @$_GET['pagina'] == ""){
 }else{
 	$pagina = @$_GET['pagina'];	
 }
-
 
 
 ?>
@@ -192,7 +200,7 @@ if( @$_GET['pagina'] == ""){
 									<i class="fa fa-desktop" aria-hidden="true"></i> <span>Home</span>
 								</a>
 							</li>
-							<li class="treeview <?php echo @$menu_cadastros ?>">
+							<li class="treeview <?php echo @$ocultar_configuracoes?> <?php echo @$menu_cadastros ?>">
 								<a href="#">
 									<i class="fa fa-exchange" aria-hidden="true"></i>
 									<span>Configurações</span>
@@ -227,7 +235,7 @@ if( @$_GET['pagina'] == ""){
 									<i class="fa fa-angle-left pull-right"></i>
 								</a>
 								<ul class="treeview-menu">
-									<!--li class="<--?php echo @$candidaturas ?>"><a href="index.php?pagina=candidaturas"><i class="fa fa-angle-right"></i> Pedidos</a></li-->
+									<li class="<?php echo @$ocultar_campos?> <?php echo @$candidaturas ?>"><a href="index.php?pagina=candidaturas"><i class="fa fa-angle-right"></i> Pedidos</a></li>
 		
 									<li class="<?php echo @$candidaturas_candidato ?>"><a href="index.php?pagina=candidaturas_candidato"><i class="fa fa-angle-right"></i> Ver Candidaturas</a></li>
 
@@ -242,9 +250,9 @@ if( @$_GET['pagina'] == ""){
 
 								</ul>
 							</li>
-
-
-							 <li class="treeview <?php echo @$menu_perfil ?>">
+								
+								
+							  <li class="treeview <?php echo @$ocultar_campos?> <?php echo @$menu_perfil ?> " >
 								<a href="#">
 									<i class="fa fa-user" aria-hidden="true"></i>
 									<span>Perfil</span>
@@ -257,7 +265,7 @@ if( @$_GET['pagina'] == ""){
 								</ul>
 							</li>
 
-							<li class="treeview <?php echo @$menu_recrutador ?>">
+							<li class="treeview <?php echo @$ocultar_campos?> <?php echo @$menu_recrutador ?>">
 								<a href="#">
 									<i class="fa fa-user"></i>
 									<span>Atualizar Dados</span>
@@ -268,7 +276,7 @@ if( @$_GET['pagina'] == ""){
 									<li class="<?php echo @$atualizar_recrutador ?>"><a href="index.php?pagina=atualizar_recrutador"><i class="fa fa-angle-right"></i> Atualizar Recrutador</a></li>
 
 								</ul>
-							</li>
+							</li> 
 							
 							<li class="treeview <?php echo @$menu_pessoas ?>">
 								<a href="#">
@@ -300,17 +308,21 @@ if( @$_GET['pagina'] == ""){
 								</ul>
 							</li>
 
+
+
+							
 							<li class="treeview <?php echo @$menu_aprovacao ?>">
 								<a href="#">
 									<i class="fa fa-check-square-o"></i>
 									<span>Aprovação</span>
 									<i class="fa fa-angle-left pull-right"></i>
 								</a>
-								<!--ul class="treeview-menu">								
+														
+								 <ul class="treeview-menu">								
 									
-									<li class="<?php echo @$pedir_aprovacao_candidatura ?>"><a href="index.php?pagina=pedir_aprovacao_candidatura"><i class="fa fa-angle-right"></i> Solicitar Aprovação</a></li>
+									<li class=" <?php echo @$ocultar_campos?> <?php echo @$pedir_aprovacao_candidatura ?>"><a  href="index.php?pagina=pedir_aprovacao_candidatura"><i class="fa fa-angle-right"></i> Solicitar Aprovação</a></li>
 
-								</ul-->
+								</ul> 
 
 								<ul class="treeview-menu">								
 									
@@ -326,7 +338,7 @@ if( @$_GET['pagina'] == ""){
 									<i class="fa fa-angle-left pull-right"></i>
 								</a>
 								<ul class="treeview-menu">
-									<!--li class="<?php echo @$rel_candidaturas ?>"><a href="#" data-toggle="modal" data-target="#RelCan"><i class="fa fa-angle-right"></i> Pedidos</a></li-->
+									<!-- <li class="<?php echo @$rel_candidaturas ?>"><a href="#" data-toggle="modal" data-target="#RelCan"><i class="fa fa-angle-right"></i> Pedidos</a></li> -->
 
 									
 

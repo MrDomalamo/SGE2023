@@ -50,7 +50,7 @@ if($total_reg > 0){
 	<tr> 
 	<th>Candidato</th>
 	<th class="esc">Recrutador</th> 
-	<th class="esc">Director</th> 
+	<th class="esc">Vaga</th> 
 	<th class="esc">Estado</th> 
 	<th>Ações</th>
 	</tr> 
@@ -270,7 +270,7 @@ HTML;
 <script type="text/javascript">
 
 
-	$(document).ready( function () {
+	$(document).ready( function (){
 		$('#tabela').DataTable({
 			"ordering": false,
 			"stateSave": true,
@@ -282,18 +282,18 @@ HTML;
 	function editar(id, candidato, recrutador, diretor, status, data_aprovacao, descricao){
 
 
-$('#id').val(id);
-$('#candidato').val(candidato).change();
-$('#recrutador').val(recrutador).change();
-$('#diretor').val(diretor).change();
-$('#status').val(status).change();
-$('#data_aprovacao').val(data_aprovacao);
-$('#descricao').val(descricao);
+		$('#id').val(id);
+		$('#candidato').val(candidato).change();
+		$('#recrutador').val(recrutador).change();
+		$('#diretor').val(diretor).change();
+		$('#status').val(status).change();
+		$('#data_aprovacao').val(data_aprovacao);
+		$('#descricao').val(descricao);
 
-$('#tituloModal').text('Editar Registro');
-$('#modalForm').modal('show');
-$('#mensagem').text('');
-}
+		$('#tituloModal').text('Editar Registro');
+		$('#modalForm').modal('show');
+		$('#mensagem').text('');
+	}
 
 
 	function mostrar(nome, telefone, genero, curso, instituicoes, nivel_academico, finalidade, recrutador, telefone_recrutador , email_recrutador , diretor, telefone_diretor , email_diretor , status, data_cad, data_aprovacao, descricao){
@@ -336,12 +336,12 @@ $('#mensagem').text('');
 
 
 	function arquivo(id, nome){
-    $('#id-arquivo').val(id);    
-    $('#nome-arquivo').text(nome);
-    $('#modalArquivos').modal('show');
-    $('#mensagem-arquivo').text(''); 
-    listarArquivos();   
-}
+		$('#id-arquivo').val(id);    
+		$('#nome-arquivo').text(nome);
+		$('#modalArquivos').modal('show');
+		$('#mensagem-arquivo').text(''); 
+		listarArquivos();   
+	}
 
 </script>
 

@@ -5,8 +5,8 @@ require_once("../../conexao.php");
 $candidato = $_POST['candidato'];    
 $recrutador = $_POST['recrutador'];
 $finalidade = $_POST['finalidade'];
-$cidade = $_POST['cidade'];
-$bairro = $_POST['bairro'];
+// $cidade = $_POST['cidade'];
+// $bairro = $_POST['bairro'];
 $direcoes = $_POST['direcoes'];
 $pelouro = $_POST['pelouro'];
 $data_inicio = $_POST['data_inicio']; 
@@ -44,10 +44,10 @@ if(@count($res) > 0){
 
 
 	if($id == ""){
-		$query = $pdo->prepare("INSERT INTO $tabela SET candidato = '$candidato', recrutador = '$recrutador', finalidade = '$finalidade', bairro = '$bairro', cidade = '$cidade', direcoes = '$direcoes', pelouro = '$pelouro',data_cad = curDate(), data_inicio = '$data_inicio', data_final = '$data_final', estado = '$estado' ,arquivo = '$arquivo', descricao =:descricao ,ativo = 'Sim', genero = '$genero', idade = '$idade' ");
+		$query = $pdo->prepare("INSERT INTO $tabela SET candidato = '$candidato', recrutador = '$recrutador', finalidade = '$finalidade', direcoes = '$direcoes', pelouro = '$pelouro',data_cad = curDate(), data_inicio = '$data_inicio', data_final = '$data_final', estado = '$estado' ,arquivo = '$arquivo', descricao =:descricao ,ativo = 'Sim', genero = '$genero', idade = '$idade' ");
 		
 	}else{
-		$query = $pdo->prepare("UPDATE $tabela SET candidato = '$candidato', recrutador = '$recrutador', finalidade = '$finalidade', bairro = '$bairro', cidade = '$cidade', direcoes = '$direcoes', pelouro = '$pelouro', data_inicio = '$data_inicio', data_final = '$data_final', estado = '$estado' ,arquivo = '$arquivo', descricao = :descricao ,ativo = 'Sim', genero = '$genero', idade = '$idade' WHERE id = '$id'");
+		$query = $pdo->prepare("UPDATE $tabela SET candidato = '$candidato', recrutador = '$recrutador', finalidade = '$finalidade', direcoes = '$direcoes', pelouro = '$pelouro', data_inicio = '$data_inicio', data_final = '$data_final', estado = '$estado' ,arquivo = '$arquivo', descricao = :descricao ,ativo = 'Sim', genero = '$genero', idade = '$idade' WHERE id = '$id'");
 	    
 	}
 

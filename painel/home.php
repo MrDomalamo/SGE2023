@@ -404,7 +404,7 @@ for($i=1; $i <= 12; $i++){
 			<a href="#">	
         	<div class="col-md-3 widget widget1">
         		<div class="r3_counter_box">
-                    <i class="pull-left fa fa-user user01 icon-rounded"></i>
+                    <i class="pull-left fa fa-desktop user01 icon-rounded"></i>
                     <div class="stats">
                       <h5><strong><?php echo @$total_vagas ?></strong></h5>
                       <span>Vagas</span>
@@ -511,7 +511,7 @@ for($i=1; $i <= 12; $i++){
         	<a href="#">
         	<div class="col-md-4 widget">
         		<div class="r3_counter_box">
-                    <i class="pull-left fa fa-plus user09 <?php echo @$total_candidaturas ?> icon-rounded"></i>
+                    <i class="pull-left fa fa-archive user09 icon-rounded <?php echo @$total_candidaturas ?> icon-rounded"></i>
                     <div class="stats">
                       <h5><strong><?php echo @$total_candidaturas ?></strong></h5>
                       <span> Candidaturas</span>

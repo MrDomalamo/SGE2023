@@ -114,15 +114,7 @@ if(@$atualizar_recrutador == 'ocultar'){
 							</div>						
 						</div> -->
 
-
-						
-
-
 					</div>
-
-
-
-
 
 					<div class="col-md-8">
 						<div class="form-group"> 
@@ -130,14 +122,6 @@ if(@$atualizar_recrutador == 'ocultar'){
 							<input type="text" class="form-control" name="endereco" id="endereco" placeholder="Rua X Número 20 Bairro X"> 
 						</div>
 					</div>	
-
-						 
-
-
-
-					
-						
-
 
 							<div class="row">
 
@@ -160,19 +144,12 @@ if(@$atualizar_recrutador == 'ocultar'){
 									</div>						
 								</div>
 
-
-
-
 								<div class="col-md-3">						
 									<div class="form-group"> 
 										<label>Provincia*</label> 
 										<div id="listar-bairros"></div>
 									</div>						
 								</div> -->
-
-
-
-						
 
 						<div class="col-md-5">						
 							<div class="form-group"> 
@@ -223,18 +200,17 @@ if(@$atualizar_recrutador == 'ocultar'){
 				</button>
 			</div>
 			
-				<div class="modal-body">			
-					
-
+				<div class="modal-body">								
 
 					<div class="row" style="border-bottom: 1px solid #cac7c7;">
 						<div class="col-md-6">							
 							<span><b>Gênero: </b></span>
 							<span id="genero_mostrar"></span>							
 						</div>
-						<div class="col-md-6">							
-							<span><b>Código do funcionario: </b></span>
-							<span id="cpf_mostrar"></span>							
+						<div class="col-md-6">	
+							<span><b>BI: </b></span>
+							<span id="creci_mostrar"></span>						
+														
 						</div>
 						
 					</div>
@@ -253,7 +229,11 @@ if(@$atualizar_recrutador == 'ocultar'){
 					</div>
 
 
-					<div class="row" style="border-bottom: 1px solid #cac7c7;">					
+					<div class="row" style="border-bottom: 1px solid #cac7c7;">
+						<div class="col-md-6">							
+							<span><b>Código: </b></span>
+							<span id="cpf_mostrar"></span>
+						</div>
 						<div class="col-md-6">							
 							<span><b>Cargo: </b></span>
 							<span id="cargo_mostrar"></span>
@@ -262,13 +242,10 @@ if(@$atualizar_recrutador == 'ocultar'){
 					</div>
 
 					<div class="row" style="border-bottom: 1px solid #cac7c7;">
-						<div class="col-md-6">							
-							<span><b>Departamento: </b></span>
-							<span id="direcao_mostrar"></span>							
-						</div>
-						<div class="col-md-6">							
-							<span><b>Área: </b></span>
-							<span id="pelouro_mostrar"></span>
+						
+						<div class="col-md-12">							
+							<span><b>Departameto: </b></span>
+							<span id="direcao_mostrar"></span>
 						</div>
 					</div>	
 
@@ -301,8 +278,6 @@ if(@$atualizar_recrutador == 'ocultar'){
 	</div>
 </div>
 
-
-  
 
 
 <script type="text/javascript">var pag = "<?=$pag?>"</script>

@@ -8,9 +8,11 @@ $id = $_POST['id'];
 $direcao = $_POST['direcao']; 
 $pelouro = $_POST['pelouro'];
 
-
-
-
+$descricao = str_replace("'"," ",$descricao);
+$descricao = str_replace('"',' ',$descricao);
+$descricao = str_replace(array("\n","\r","'"),' ', $descricao);
+// echo $descricao; 
+// exit();
 
 if($id == ""){
 	$query = $pdo->prepare("INSERT INTO $tabela SET nome = :nome, descricao = :descricao, direcao = '$direcao', pelouro = '$pelouro' ");

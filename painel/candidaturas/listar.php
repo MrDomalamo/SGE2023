@@ -28,7 +28,7 @@ $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = @count($res);
 if($total_reg > 0){
 	$nome_user = $res[0]['nome'];
-	$provincia_usu = $res[0]['bairro'];
+	$direcao_usu = $res[0]['direcao'];
 	
 }
 
@@ -36,7 +36,7 @@ echo <<<HTML
 <small>
 HTML;
 if($nivel_usuario == 'Recrutador' || $nivel_usuario == 'Diretor'){
-	$query = $pdo->query("SELECT * FROM candidaturas where  bairro = '$provincia_usu' ORDER BY id desc");
+	$query = $pdo->query("SELECT * FROM candidaturas where  direcoes = '$direcao_usu' ORDER BY id desc");
 }else{
 	$query = $pdo->query("SELECT * FROM candidaturas ORDER BY id desc");
 }

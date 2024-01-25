@@ -11,7 +11,7 @@ if(@$cursos == 'ocultar'){
 
  ?>
 
- <button onclick="inserir()" type="button" class="btn btn-primary btn-flat btn-pri"><i class="fa fa-plus" aria-hidden="true"></i> Nova curso</button>
+ <button onclick="inserir()" type="button" class="btn btn-primary btn-flat btn-pri"><i class="fa fa-plus" aria-hidden="true"></i> Novo curso</button>
 
 <div class="bs-example widget-shadow" style="padding:15px" id="listar">
 	

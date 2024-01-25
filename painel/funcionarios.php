@@ -58,12 +58,7 @@ if(@$funcionarios == 'ocultar'){
 							</div>						
 						</div>
 
-
-						
-
-
 					</div>
-
 
 					<div class="row">
 						<div class="col-md-4">						
@@ -72,8 +67,6 @@ if(@$funcionarios == 'ocultar'){
 								<input type="email" class="form-control" name="email" id="email" required> 
 							</div>						
 						</div>
-
-						
 
 						<div class="col-md-4">						
 							<div class="form-group"> 
@@ -101,15 +94,7 @@ if(@$funcionarios == 'ocultar'){
 							</div>						
 						</div>
 
-
-						
-
-
 					</div>
-
-
-
-
 
 					<div class="col-md-8">
 						<div class="form-group"> 
@@ -124,10 +109,7 @@ if(@$funcionarios == 'ocultar'){
 							<input type="text" class="form-control" name="creci" id="creci" maxlength="14" placeholder="Media Mais 2023"> 
 						</div>
 					</div>	
-
-
-
-					
+				
 						<div class="col-md-4">	
 							<div class="form-group"> 
 								<label>Gênero</label> 
@@ -204,18 +186,17 @@ if(@$funcionarios == 'ocultar'){
 				</button>
 			</div>
 			
-				<div class="modal-body">			
-					
-
+				<div class="modal-body">								
 
 					<div class="row" style="border-bottom: 1px solid #cac7c7;">
 						<div class="col-md-6">							
 							<span><b>Gênero: </b></span>
 							<span id="genero_mostrar"></span>							
 						</div>
-						<div class="col-md-6">							
+						<div class="col-md-6">	
 							<span><b>BI: </b></span>
-							<span id="cpf_mostrar"></span>							
+							<span id="creci_mostrar"></span>						
+														
 						</div>
 						
 					</div>
@@ -237,7 +218,7 @@ if(@$funcionarios == 'ocultar'){
 					<div class="row" style="border-bottom: 1px solid #cac7c7;">
 						<div class="col-md-6">							
 							<span><b>Código: </b></span>
-							<span id="creci_mostrar"></span>
+							<span id="cpf_mostrar"></span>
 						</div>
 						<div class="col-md-6">							
 							<span><b>Cargo: </b></span>
@@ -246,15 +227,10 @@ if(@$funcionarios == 'ocultar'){
 						
 					</div>
 
-
-						
-
-
-
 					<div class="row" style="border-bottom: 1px solid #cac7c7;">
 						
 						<div class="col-md-12">							
-							<span><b>Direcção: </b></span>
+							<span><b>Departameto: </b></span>
 							<span id="direcao_mostrar"></span>
 						</div>
 					</div>	
@@ -304,7 +280,6 @@ if(@$funcionarios == 'ocultar'){
 		$('.sel2').select2({
 			dropdownParent: $('#modalForm')
 		});
-
 
 		listarBairros();
 

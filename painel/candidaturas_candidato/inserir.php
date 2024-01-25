@@ -41,8 +41,45 @@ $query = $pdo->query("SELECT * FROM candidatos where id = '$id_candidato'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 if(@count($res) > 0){
 	$idade = $res[0]['idade'];
+	$telefone = $res[0]['telefone'];
+	$cpf = $res[0]['cpf'];
+	$endereco = $res[0]['endereco'];
+	$nivel_academico = $res[0]['nivel_academico'];
+	$genero = $res[0]['genero'];
+	$cargo = $res[0]['cargo'];
+	$cidade = $res[0]['cidade'];
+	$bairro = $res[0]['bairro'];
+	$instituicoes = $res[0]['instituicoes'];
+	$estado_civil = $res[0]['estado_civil'];
+	$nacionalidade = $res[0]['nacionalidade'];
+	$curso= $res[0]['curso'];
+}else{
+	$idade = '';
+	$telefone = '';
+	$cpf = '';
+	$endereco = '';
+	$nivel_academico = '';
+	$genero = '';
+	$cargo = '';
+	$cidade = '';
+	$bairro = '';
+	$instituicoes = '';
+	$estado_civil = '';
+	$nacionalidade = '';
+	$curso= '';
 }
- 
+ if($idade == '' || $telefone == '' ||  $cpf == '' || $endereco == '' || $nivel_academico == '' || $genero = ' ' || $cargo == '' || $cidade == '' || $bairro = '' || $instituicoes == '' || $estado_civil = '' || $nacionalidade == '' || $curso == ''){
+	echo "Por favor, certifique-se de que preencheu todos os campos!";
+	exit();
+	
+ }
+//  $query = $pdo->query("SELECT * FROM arquivos WHERE usuario == '$id_usuario' AND registro == 'Candidatos' AND id_reg == '$id_usuario'" );
+// $res = $query->fetchAll(PDO::FETCH_ASSOC);
+// 	if(@count($res) > 0){
+// 		echo "Por favor, certifique-se de que anexou todos os documentos requisistados!";
+// 	}
+
+
 	if($id == ""){
 		$query = $pdo->prepare("INSERT INTO $tabela SET candidato = '$candidato', recrutador = '0', finalidade = '$finalidade', direcoes = '$direcoes', pelouro = '$pelouro', data_cad = curDate(), estado = 'Pendente' ,arquivo = 'sem-foto.png', descricao =:descricao ,ativo = 'Sim', genero = '$genero', idade = '$idade' ");
 		

@@ -5,10 +5,28 @@ $data_atual = date('Y-m-d');
 $id_usuario = $_SESSION['id_usuario'];
 $nivel_usuario = $_SESSION['nivel_usuario'];
 
+$query3 = $pdo->query("SELECT * FROM usuarios where id = '$id_usuario'");
+		$res3 = $query3->fetchAll(PDO::FETCH_ASSOC);
+		if(@count($res3) > 0){
+			$id_funcionario = $res3[0]['id_func'];
+		}else{
+			$id_funcionario = ' ';
+		}
+
+	$query4 = $pdo->query("SELECT * FROM funcionarios where id = '$id_funcionario'");
+		$res4 = $query4->fetchAll(PDO::FETCH_ASSOC);
+		if(@count($res4) > 0){
+			$funcionario_direcao = $res4[0]['direcao'];
+		}else{
+			$funcionario_direcao = ' ';
+		}		
 
 echo <<<HTML
 <small>
 HTML;
+if($nivel_usuario != 'Administrador'){
+	$query = $pdo->query("SELECT * FROM vagas WHERE direcao = '$funcionario_direcao' ORDER BY id desc");
+}
 
 $query = $pdo->query("SELECT * FROM vagas ORDER BY id desc");
 
@@ -34,7 +52,8 @@ HTML;
 		$descricao = $res[$i]['descricao'];
 		$direcao = $res[$i]['direcao'];
 		$pelouro = $res[$i]['pelouro'];
-		
+		$descricao = str_replace('"',"**",$descricao);
+
 		if($nivel_usuario == 'Candidato' || $nivel_usuario == 'Recrutador'){
 			$editar_ususario = 'ocultar';
 		}else{
@@ -106,8 +125,6 @@ HTML;
 ?>
 
 
-
-
 <script type="text/javascript">
 
 
@@ -122,11 +139,17 @@ HTML;
 
 
 	function editar(id, nome, descricao, direcao, pelouro){
-
+		for(let letra of descricao){
+			if(letra==='*'){
+				descricao = descricao.replace('**','"');
+	
+			}
+		}
 
 		$('#id').val(id);
 		$('#nome').val(nome);
 		$('#descricao').val(descricao);
+		// nicEditors.findEditor("descricao").setContent(descricao);
 		$('#direcao').val(direcao).change();		
 		$('#pelouro').val(pelouro);	
 		$('#tituloModal').text('Editar Registro');
@@ -150,7 +173,7 @@ function concorrer(id, nome, descricao, direcao, pelouro){
 
 		
 		$('#nome_mostrar').text(nome);
-		$('#descricao_mostrar').text(descricao);
+		$('#descricao_mostrar').html(descricao);
 		$('#direcao_mostrar').text(direcao);
 		$('#pelouro_mostrar').text(pelouro);
 	
@@ -162,6 +185,7 @@ function concorrer(id, nome, descricao, direcao, pelouro){
 		$('#id').val('');
 		$('#nome').val('');
 		$('#descricao').val('');
+		// nicEditors.findEditor("descricao").setContent('');
 		$('#direcao').val('');
 		$('#pelouro').val('');
 	

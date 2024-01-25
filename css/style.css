@@ -7,7 +7,7 @@
 body{
     
     
-    justify-content: center;s
+   justify-content: center;
     
 }
 
@@ -72,14 +72,14 @@ header {
 }
 
 
-
-
 ul{
     list-style: none;
 }
 .footer{
     background-color: #096B63;
-    padding: 42px 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 6rem;
 }
 .footer-col{
     color: #fff;
@@ -144,7 +144,7 @@ ul{
 
 /*=======modal login=======*/
 .modal {
-background-image:  url('../img/bc03.jpg');
+background-image:  url('../img/bc02.jpg');
  background-repeat: no-repeat; 
  background-size: 1600px; 
 }

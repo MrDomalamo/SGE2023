@@ -20,6 +20,13 @@ if($total_reg > 0){
 	$id_func = $res[0]['id_func'];
 	$id_candidato = $res[0]['id_candidato'];
 }
+if($nivel_usu != 'Administrador'){
+	$ocultar_campos = 'ocultar';
+	$ocultar_espaco ='';
+}else{
+	$ocultar_campos ='';
+	$ocultar_espaco = 'ocultar';
+}
 
 $query = $pdo->query("SELECT * FROM funcionarios WHERE id = '$id_func'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -64,7 +71,7 @@ if(@$candidaturas == 'ocultar'){
 										<select class="form-control sel2" name="candidato" id="candidato" required style="width:100%;"> 
 											<?php 
 											if($nivel_usu == 'Recrutador' || $nivel_usu == 'Diretor'){
-												$query = $pdo->query("SELECT * FROM usuarios where nivel = 'Candidato' and bairro = '$provincia_func'  order by id asc");
+												$query = $pdo->query("SELECT * FROM usuarios where nivel = 'Candidato' order by id asc");
 											}else{
 												$query = $pdo->query("SELECT * FROM usuarios where nivel = 'Candidato' or nivel = 'Administrador' order by id asc");
 											}
@@ -118,12 +125,12 @@ if(@$candidaturas == 'ocultar'){
 
 					<div class="col-md-2">						
 									<div class="form-group"> 
-										<label>Data Inicio</label> 
+										<label>Data Início</label> 
 										<input type="date" class="form-control" name="data_inicio" id="data_inicio" value="<?php echo date('Y-m-d') ?>"> 
 									</div>						
 								</div>
 
-						<div class="col-md-2">						
+						<div class="<?php echo @$ocultar_campos?>" class="col-md-2">						
 							<div class="form-group"> 
 								<label>Data Final</label> 
 								<input type="date" class="form-control" name="data_final" id="data_final" value="<?php echo date('Y-m-d') ?>"> 
@@ -138,8 +145,9 @@ if(@$candidaturas == 'ocultar'){
 								<label>Estado*</label> 
 								<select class="form-control" name="estado" id="estado"> 
 									<option value="Indeferido">INDEFERIDO</option>
-									<option value="Em Curso">EM CURSO</option>
-									<option value="Concluido">CONCLUIDO</option>
+									<option class="<?php echo @$ocultar_campos?>" value="Em Curso">EM CURSO</option>
+									<option class="<?php echo @$ocultar_campos?>" value="Concluido">CONCLUIDO</option>
+									<option class="<?php echo @$$ocultar_espaco ?>"  value="Entrevista">Entrevista</option>
 									
 								</select>
 							</div>
@@ -149,8 +157,9 @@ if(@$candidaturas == 'ocultar'){
 							<div class="form-group"> 
 								<label>Finalidade*</label> 
 								<select class="form-control" name="finalidade" id="finalidade"> 
-									<option value="Estagio Curricular">ESTAGIO CURRiCULAR</option>
+									<option value="Estagio Curricular">ESTAGIO CURRICULAR</option>
 									<option value="Recolha de Dados">RECOLHA DE DADOS</option>
+									<option value="Recolha de Dados">VAGA REGULAR</option>
 								</select>
 							</div>
 							</div>
@@ -160,9 +169,9 @@ if(@$candidaturas == 'ocultar'){
 
 
 
-							<div class="row">
+					<div class="row">
 
-								<div class="col-md-3">						
+								<!-- <div class="col-md-3">						
 									<div class="form-group"> 
 										<label>Cidade*</label> 
 										<select class="form-control sel2" name="cidade" id="cidade" required style="width:100%;"> 
@@ -189,14 +198,14 @@ if(@$candidaturas == 'ocultar'){
 										<label>Província*</label> 
 										<div id="listar-bairros"></div>
 									</div>						
-								</div>
+								</div> -->
 									
 
 							
 
 								<div class="col-md-6">						
 									<div class="form-group"> 
-										<label>Pelouro*</label> 
+										<label>Área*</label> 
 										<select class="form-control sel2" name="pelouro" id="pelouro" required style="width:100%;"> 
 											<?php 
 											$query = $pdo->query("SELECT * FROM pelouros order by nome asc");
@@ -211,29 +220,26 @@ if(@$candidaturas == 'ocultar'){
 
 										</select>
 									</div>	
-							</div>
+								</div>
 							
-							
-													
-
-
-								
-
 								
 								<div class="row">
-									<div class="col-md-6">						
-									<div class="form-group"> 
-										<label>Direcções*</label> 
-										<div id="listar-direcoes"></div>
-									</div>						
-								</div>
-								<div class="col-md-6">
-							<div class="form-group"> 
-								<label>OBS <small>(Max 500 Caracteres)</small></label> 
-								<textarea maxlength="500" type="text" class="form-control" name="descricao" id="descricao"> </textarea>
-							</div>
-						</div>
-						</div>	
+									
+									<div style="margin-top:-13px" class="col-md-6">						
+										<div class="form-group"> 
+											<label>Direcções*</label> 
+											<div id="listar-direcoes"></div>
+
+								
+										</div>						
+									</div>
+									<div class="col-md-6">
+										<div class="form-group"> 
+											<label>OBS <small>(Max 500 Caracteres)</small></label> 
+											<textarea maxlength="500" type="text" class="form-control" name="descricao" id="descricao"> </textarea>
+										</div>
+									</div>
+								</div>	
   
 						<!-- <div class="col-md-3">						
 							<div class="form-group"> 
@@ -408,14 +414,6 @@ if(@$candidaturas == 'ocultar'){
 							<span id="descricao_mostrar"></span>	
 						</div>
 					</div>
-
-					
-
-					
-
-					
-
-					
 
 <!-- 
 					<div class="row">

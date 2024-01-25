@@ -6,7 +6,7 @@ $nome = $_POST['nome'];
 $telefone = $_POST['telefone'];
 $cpf = $_POST['cpf'];
 $email = $_POST['email'];
-
+$direcao = $_POST['direcao'];
 $endereco = $_POST['endereco'];
 $id = $_POST['id'];
 $genero = $_POST['genero'];
@@ -86,11 +86,6 @@ $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 		$id_cargo_rec = $res2[0]['id'];
 	}
 
-
-
-
-
-
 if($id == ""){
 	$query = $pdo->prepare("INSERT INTO $tabela SET nome = :nome, telefone = :telefone, cpf = :cpf, email = :email, cargo = '$id_cargo_rec' ,genero = '$genero' , endereco = :endereco, creci = :creci, foto = '$foto', ativo = 'Sim' ");
 
@@ -119,7 +114,7 @@ $ult_id = $pdo->lastInsertId();
 	}
 	
 }else{
-	$query = $pdo->prepare("UPDATE $tabela SET nome = :nome, telefone = :telefone, cpf = :cpf, email = :email, cargo = '$id_cargo_rec' ,genero = '$genero' , endereco = :endereco, foto = '$foto', ativo = 'Sim' WHERE id = '$id'");
+	$query = $pdo->prepare("UPDATE $tabela SET nome = :nome, telefone = :telefone, cpf = :cpf, email = :email, data_admissao = '$data_adm', cargo = '$codigo', direcao = '$direcao', genero = '$genero' , endereco = :endereco, creci = :creci, foto = '$foto', ativo = 'Sim' WHERE id = '$id'");
 
 $query->bindValue(":nome", "$nome");
 $query->bindValue(":telefone", "$telefone");

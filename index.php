@@ -86,16 +86,14 @@ if($total_reg == 0){
                     </div>
                     <br>
                     <div class="cor">
-                    <b><p  align="Justify">Para fins de candidatura às vagas de estágio, preencha os dados do seu perfil na íntegra, anexe a os documentos, acadêmicos assim como de identificação.</p>
+                    <b><p  align="Justify">Para aceder ao sistema, introduza os seu dados de acesso. Caso não tenha uma conta, clicle no botão abaixo e se cadastre e de seguida efectur o seu login.
+</br>
+					</br>Para fins de candidatura às vagas de estágio, preencha os dados do seu perfil na íntegra, anexe a os documentos, acadêmicos assim como de identificação.</p>
                                 
-                        <p  align="Justify">Se o seu objetivo é coletar dados para fins académicos, selecione a opção correspondente, indique as perguntas ou dados que deseja coletar.</p>
+                        <p  align="Justify">Se o seu objetivo é coletar dados para fins académicos, selecione a opção correspondente e aguarde por uma resposta.</p>
                           <div class="nota">      
                         <p  align="Justify">Nota: Em todos os casos, é importante registar seu contacto telefónico, para que possamos contactá-lo quando necessário.
-                        </p></div></b></div>
-
-                        
-                        
-                    
+                        </p></div></b></div>            
                 
             </div>
         

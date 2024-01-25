@@ -38,6 +38,13 @@ if($total_reg > 0 and $res[0]['id'] != $id){
 	exit();
 }
 
+if($idade <18){
+	echo "Idade não pode ser inferior a 18";
+	exit();
+}elseif($idade >35){
+	echo "Idade não pode ser maior que 35";
+	exit();
+}
 
 $query = $pdo->query("SELECT * FROM $tabela where id = '$id'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -103,7 +110,7 @@ $res2 = $query2->fetchAll(PDO::FETCH_ASSOC);
 	
 	//inserir o funcionário na tabela de usuários	
 		if(@$nome_cargo != ""){
-			$query_usu = $pdo->prepare("INSERT INTO usuarios SET nome = :nome, cpf = :cpf,  email = :email, senha_crip = :senha_crip, senha = :senha ,genero = '$genero' , nivel = '$nome_cargo',  foto = '$foto' , id_candidato = '$ult_id', ativo = 'Sim', genero = '$genero', idade =:idade, bairro = '$bairro' ");
+			$query_usu = $pdo->prepare("INSERT INTO usuarios SET nome = :nome, cpf = :cpf,  email = :email, senha_crip = :senha_crip, senha = :senha ,genero = '$genero' , nivel = '$nome_cargo',  foto = '$foto' , id_candidato = '$ult_id', ativo = 'Sim', idade =:idade, bairro = '$bairro' ");
 	
 	
 			$senha_crip = md5('123');

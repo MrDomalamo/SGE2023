@@ -34,9 +34,6 @@ HTML;
 	
 </div>
 
-
-
-
 <!-- Modal -->
 <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
@@ -61,7 +58,7 @@ HTML;
 						<div class="col-md-6">						
 							<div class="form-group"> 
 								<label>Descrição</label> 
-								<textarea rows="" cols="" class="form-control" name="descricao" id="descricao" required></textarea>  
+								<textarea maxlength="1000" name="descricao" id="descricao"> </textarea>  
 							</div>						
 						</div>
 					</div>
@@ -94,10 +91,6 @@ HTML;
 										<div id="listar-direcoes"></div>
 									</div>						
 								</div>
-
-
-
-
 
 					</div>				
 					
@@ -158,7 +151,7 @@ HTML;
 
 					<br>
 					<input type="hidden" name="id_concorrer" id="id_concorrer"> 
-					<small><div id="mensagem_concorrer" align="center" class="mt-3"></div></small>					
+					<small><div id="mensagemConcorrer" align="center" class="mt-3"></div></small>					
 
 				</div>
 
@@ -174,8 +167,6 @@ HTML;
 		</div>
 	</div>
 </div>
-
-
 
 <!-- ModalMostrar -->
 <div class="modal fade" id="modalMostrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
@@ -227,6 +218,7 @@ HTML;
 <script src="js/ajax.js"></script>
 
 
+
 <script type="text/javascript">
 	$(document).ready(function() {
 
@@ -245,6 +237,39 @@ HTML;
 </script>
 
 <script type="text/javascript">
+		$("#form").submit(function () {
+			event.preventDefault();
+			// nicEditors.findEditor('descricao').saveContente();
+			var formData = new FormData(this);
+
+			$.ajax({
+				url: pag + "/inserir.php",
+				type: 'POST',
+				data: formData,
+
+				success: function (mensagem) {
+					$('#mensagem').text('');
+					$('#mensagem').removeClass()
+					if (mensagem.trim() == "Salvo com Sucesso") {                    
+						$('#btn-fechar').click();						
+						listar();
+					} else {
+						$('#mensagem').addClass('text-danger')
+						$('#mensagem').text(mensagem)
+					}
+
+				},
+
+				cache: false,
+				contentType: false,
+				processData: false,
+
+			});
+
+		});
+	</script>
+
+<script type="text/javascript">
 		$("#formConcorrer").submit(function () {
 			event.preventDefault();
 			var formData = new FormData(this);
@@ -254,15 +279,15 @@ HTML;
 				type: 'POST',
 				data: formData,
 
-				success: function (mensagem) {
-					$('#mensagem_concorrer').text('');
-					$('#mensagem_concorrer').removeClass()
-					if (mensagem.trim() == "Salvo com Sucesso") {                    
+				success: function (mensagemConcorrer) {
+					$('#mensagemConcorrer').text('');
+					$('#mensagemConcorrer').removeClass()
+					if (mensagemConcorrer.trim() == "Salvo com Sucesso") {                    
 						$('#btn-fechar-concorrer').click();						
 						listar();
 					} else {
-						$('#mensagem_concorrer').addClass('text-danger')
-						$('#mensagem_concorrer').text(mensagem)
+						$('#mensagemConcorrer').addClass('text-danger')
+						$('#mensagemConcorrer').text(mensagemConcorrer)
 					}
 
 				},

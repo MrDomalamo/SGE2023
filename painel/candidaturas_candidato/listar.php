@@ -37,7 +37,7 @@ if($total_reg > 0){
 	<tr> 
 	<th>Nome</th>
 	<th class="esc">Gênero</th>
-	<th class="esc">Idade</th>
+	<th class="esc">Tipo</th>
 	<th class="esc">Telefone</th>
 	<th class="esc">Curso</th>	  
 	<th class="esc">Estado</th>
@@ -80,7 +80,13 @@ HTML;
 			$acao = 'Sim';
 			$classe_linha = 'text-muted';
 		}
-
+		$tipo_candidatura = "";
+		if($vaga ==0 || $vaga == "" ||$vaga == NULL){
+			$tipo_candidatura = 'Candidatura regular';
+		}else{
+			
+			$tipo_candidatura = 'Candidatura Espontânea';
+		}
 
 
 		$query2 = $pdo->query("SELECT * FROM usuarios where id = '$candidato'");
@@ -255,7 +261,7 @@ if($ext == 'pdf'){
 		{$nome_candidato}
 		</td>
 		<td class="esc">{$genero_candidato}</td>
-		<td class="esc">{$idade_candidato}</td>
+		<td class="esc">{$tipo_candidatura}</td>
 		<td class="esc">{$telefone_candidato}</td>
 		<td class="esc">{$nome_curso}</td>                                        
 		<td class="esc">{$estado}</td>
@@ -265,7 +271,7 @@ if($ext == 'pdf'){
 
 	
  
-<big><a class="$editar_ususario" href="#" onclick="editar('{$id}', '{$candidato}', '{$finalidade}', '{$bairro}', '{$cidade}','{$descricao}')" title="Editar Dados"><i class="fa fa-edit text-primary"></i></a></big>
+<big><a href="#" onclick="editar('{$id}', '{$candidato}', '{$finalidade}', '{$bairro}', '{$cidade}','{$descricao}')" title="Editar Dados"><i class="fa fa-edit text-primary"></i></a></big>
 
 <big><a href="#" onclick="mostrar('{$nome_candidato}', '{$telefone_candidato}', '{$genero_candidato}', '{$idade_candidato}', '{$nome_curso}', '{$nome_instituicoes}' , '{$nome_nivel_academico}', '{$finalidade}' ,'{$nome_bairro}' ,'{$nome_cidade}'  ,'{$nome_direcoes}' ,'{$nome_pelouro}' , '{$data_cadF}', '{$data_inicioF}','{$data_finalF}' ,'{$estado}', '{$descricao}', 
 '{$nome_vaga}', '{$nome_pelouro_vagas}', '{$nome_direcao_vagas}', '{$descricao_vaga}')" title="Ver Dados"><i class="fa fa-info-circle text-secondary"></i></a></big>
